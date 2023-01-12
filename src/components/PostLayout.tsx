@@ -15,6 +15,7 @@ import { getTag } from "../lib/tags";
 import UserAuth from "../components/UserAuth";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/authContext";
+import NavLinks from "../components/NavLinks";
 
 type Props = {
   title: string;
@@ -22,6 +23,8 @@ type Props = {
   slug: string;
   tags: string[];
   author: string;
+  prev: string;
+  next: string;
   description?: string;
   children: React.ReactNode;
 };
@@ -30,6 +33,8 @@ export default function PostLayout({
   date,
   slug,
   author,
+  prev,
+  next,
   tags,
   description = "",
   children,
@@ -93,6 +98,7 @@ export default function PostLayout({
                   </li>
                 ))}
               </ul>
+              <NavLinks prev={prev} next={next}/>
             </div>
           }
         </article>

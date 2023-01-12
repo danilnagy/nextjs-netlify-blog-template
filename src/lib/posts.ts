@@ -39,7 +39,8 @@ export function fetchPostContent(): PostContent[] {
         title: string;
         tags: string[];
         slug: string;
-        fullPath: string,
+        fullPath: string;
+        next: string,
       };
       matterData.fullPath = fullPath;
 

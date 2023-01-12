@@ -4,15 +4,11 @@ const { faunaFetch } = require("./utils/fauna");
 exports.handler = async (event) => {
   const { user } = JSON.parse(event.body);
 
-  console.log(user);
-
   // create a new customer in Stripe
   const customer = await stripe.customers.create({
     email: user.email,
     name: user.user_metadata.full_name,
   });
-
-  console.log(customer);
 
   // subscribe the new customer to the free plan
   await stripe.subscriptions.create({
@@ -35,8 +31,6 @@ exports.handler = async (event) => {
       stripeID: customer.id,
     },
   });
-  
-  console.log(result);
 
   return {
     statusCode: 200,

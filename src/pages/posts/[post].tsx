@@ -19,6 +19,8 @@ export type Props = {
   slug: string;
   tags: string[];
   author: string;
+  prev?: string;
+  next?: string;
   description?: string;
   source: MdxRemote.Source;
 };
@@ -36,6 +38,8 @@ export default function Post({
   slug,
   tags,
   author,
+  prev = "",
+  next = "",
   description = "",
   source,
 }: Props) {
@@ -47,6 +51,8 @@ export default function Post({
       slug={slug}
       tags={tags}
       author={author}
+      prev={prev}
+      next={next}
       description={description}
     >
       {content}
@@ -78,6 +84,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       description: "",
       tags: data.tags,
       author: data.author,
+      prev: data.prev || "",
+      next: data.next || "",
       source: mdxSource
     },
   };

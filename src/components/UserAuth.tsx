@@ -12,8 +12,6 @@ export default function UserAuth() {
 
   const { user, login, signup, logout } = useContext(AuthContext);
 
-  console.log(user)
-
   const getRoles = (user) => {
     return user?.app_metadata.roles.map( (role) => {
       <span> {role} </span>
