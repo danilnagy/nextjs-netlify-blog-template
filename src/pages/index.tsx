@@ -30,7 +30,7 @@ export default function Index({ posts, tags, pagination }: Props) {
     netlifyAuth.authenticate((user) => {
       setLoggedIn(!!user)
       setUser(user)
-      netlifyAuth.closeModal()
+      window.location.reload()
     })
   }
   
@@ -44,6 +44,7 @@ export default function Index({ posts, tags, pagination }: Props) {
   useEffect(() => {
     netlifyAuth.initialize((user) => {
       setLoggedIn(!!user)
+      setUser(user)
     })
   }, [loggedIn])
 
