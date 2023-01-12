@@ -4,6 +4,8 @@ const { faunaFetch } = require("./utils/fauna");
 exports.handler = async (_event, context) => {
   const { user } = context.clientContext;
 
+  console.log(stripe, process.env.STRIPE_SECRET_KEY)
+
   const result = await faunaFetch({
     query: `
       query ($netlifyID: ID!) {
