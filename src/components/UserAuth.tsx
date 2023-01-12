@@ -6,6 +6,7 @@ import Pagination from "./Pagination";
 import { TagContent } from "../lib/tags";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/authContext";
+import { ro } from "date-fns/locale";
 
 export default function UserAuth() {
 
@@ -40,8 +41,8 @@ export default function UserAuth() {
           <span>
             You are logged in as <u>{user?.user_metadata.full_name}</u> [
           </span>
-          { user?.app_metadata.roles.map( (role) => (
-            <span className="highlight">{role}</span>
+          { user?.app_metadata?.roles?.map( (role) => (
+            <span className="highlight" key={role}>{role}</span>
           ))}
           <span>
             ]. You can <span className="button" onClick={logout}>Log out</span> or <a className="button" onClick={manageSubscription}>Manage your subscription</a>.
