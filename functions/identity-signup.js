@@ -35,12 +35,12 @@ exports.handler = async (event) => {
   // });
   // console.log(result);
 
-  // return {
-  //   statusCode: 200,
-  //   body: JSON.stringify({
-  //     app_metadata: {
-  //       roles: ["free"],
-  //     },
-  //   }),
-  // };
+  return {
+    statusCode: 200,
+    body: JSON.stringify({
+      app_metadata: {
+        roles: ["free"],
+      },
+    }),
+  };
 };
