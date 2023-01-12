@@ -5,19 +5,26 @@ import TagLink from "./TagLink";
 import Pagination from "./Pagination";
 import { TagContent } from "../lib/tags";
 
-// type Props = {
-//   user: PostContent[];
-//   tags: TagContent[];
-//   pagination: {
-//     current: number;
-//     pages: number;
-//   };
-// };
-export default function UserText() {
+type Props = {
+  loggedIn: boolean;
+  login: React.MouseEventHandler<HTMLButtonElement>;
+  logout: React.MouseEventHandler<HTMLButtonElement>;
+  user: any;
+};
+export default function UserText({ loggedIn, login, logout, user }: Props) {
   return (
     <div>
-      {/* <span className="button">Log in</span> or <span className="button">Sign up</span> to view tutorials. */}
-      You are logged in as <u>Danil</u>. You can <a className="button">Log out</a> or <a className="button">Manage your subscription</a>.
+      { loggedIn ? 
+        <div>
+          You are logged in as <u>{user?.user_metadata.full_name}</u>. You can <span className="button" onClick={logout}>Log out</span> or <a className="button">Manage your subscription</a>.
+        </div>
+      : 
+        <div>
+          <span className="button" onClick={login}>Log in</span> or <span className="button">Sign up</span> to view tutorials.
+        </div>
+      }
+      {/*  */}
+      
       <style jsx>{`
         .button {
           color: black;

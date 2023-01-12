@@ -9,6 +9,8 @@ import UserText from "../components/UserText";
 import { countPosts, listPostContent, PostContent } from "../lib/posts";
 import { listTags, TagContent } from "../lib/tags";
 import config from "../lib/config";
+import netlifyAuth from '../lib/netlifyAuth.js'
+import { useEffect, useState } from "react";
 
 type Props = {
   posts: PostContent[];
@@ -20,6 +22,31 @@ type Props = {
 };
 
 export default function Index({ posts, tags, pagination }: Props) {
+
+  let [loggedIn, setLoggedIn] = useState(netlifyAuth.isAuthenticated)
+  let [user, setUser] = useState(null)
+
+  let login = () => {
+    netlifyAuth.authenticate((user) => {
+      setLoggedIn(!!user)
+      setUser(user)
+      netlifyAuth.closeModal()
+    })
+  }
+  
+  let logout = () => {
+    netlifyAuth.signout(() => {
+      setLoggedIn(false)
+      setUser(null)
+    })
+  }
+
+  useEffect(() => {
+    netlifyAuth.initialize((user) => {
+      setLoggedIn(!!user)
+    })
+  }, [loggedIn])
+
   return (
     <Layout>
       <BasicMeta url={"/"} />
@@ -32,7 +59,7 @@ export default function Index({ posts, tags, pagination }: Props) {
           </h1>
           <span className="handle">by <a href="https://colidescope.com">Colidescope.com</a></span>
           <h2>A place for learning computational design<span className="fancy">.</span></h2>
-          <UserText/>
+          <UserText user={user} loggedIn={loggedIn} login={login} logout={logout}/>
           {/* <SocialList /> */}
           <PostList posts={posts} tags={tags} pagination={pagination} />
         </div>
