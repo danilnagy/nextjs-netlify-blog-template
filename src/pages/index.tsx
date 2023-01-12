@@ -9,6 +9,8 @@ import UserAuth from "../components/UserAuth";
 import { countPosts, listPostContent, PostContent } from "../lib/posts";
 import { listTags, TagContent } from "../lib/tags";
 import config from "../lib/config";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/authContext";
 
 type Props = {
   posts: PostContent[];
@@ -20,6 +22,8 @@ type Props = {
 };
 
 export default function Index({ posts, tags, pagination }: Props) {
+
+  const { user, login, signup, logout } = useContext(AuthContext);
 
   return (
     <Layout>
@@ -35,7 +39,7 @@ export default function Index({ posts, tags, pagination }: Props) {
           <h2>A place for learning computational design<span className="fancy">.</span></h2>
           <UserAuth />
           {/* <SocialList /> */}
-          <PostList posts={posts} tags={tags} pagination={pagination} />
+          { user && <PostList posts={posts} tags={tags} pagination={pagination} /> }
         </div>
       </div>
       <style jsx>{`

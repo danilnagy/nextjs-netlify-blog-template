@@ -13,6 +13,8 @@ import TagButton from "./TagButton";
 import { getAuthor } from "../lib/authors";
 import { getTag } from "../lib/tags";
 import UserAuth from "../components/UserAuth";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/authContext";
 
 type Props = {
   title: string;
@@ -32,8 +34,12 @@ export default function PostLayout({
   description = "",
   children,
 }: Props) {
+
   const keywords = tags.map(it => getTag(it).name);
   const authorName = getAuthor(author).name;
+
+  const { user, login, signup, logout } = useContext(AuthContext);
+
   return (
     <Layout>
       <BasicMeta
@@ -77,14 +83,18 @@ export default function PostLayout({
             </div>
           </header>
           <UserAuth />
-          <div className={styles.content}>{children}</div>
-          <ul className={"tag-list"}>
-            {tags.map((it, i) => (
-              <li key={i}>
-                <TagButton tag={getTag(it)} />
-              </li>
-            ))}
-          </ul>
+          { user && 
+            <div>
+              <div className={styles.content}>{children}</div> 
+              <ul className={"tag-list"}>
+                {tags.map((it, i) => (
+                  <li key={i}>
+                    <TagButton tag={getTag(it)} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          }
         </article>
         <footer>
           {/* <div className={"social-list"}>

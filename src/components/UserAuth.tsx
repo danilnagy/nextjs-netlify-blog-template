@@ -50,7 +50,7 @@ export default function UserAuth() {
         </div>
       : 
         <div className="text">
-          <span className="button" onClick={login}>Log in</span> or <span className="button" onClick={signup}>Sign up</span> to view tutorials.
+          <span className="button" onClick={login}>Log in</span> or <span className="button" onClick={signup}>Sign up</span> to access site content.
         </div>
       }      
       <style jsx>{`
