@@ -27,7 +27,7 @@ export default function Index({ posts, tags, pagination }: Props) {
   let [user, setUser] = useState(null)
 
   let login = (type) => {
-    netlifyAuth.authenticate((type, user) => {
+    netlifyAuth.authenticate(type, (user) => {
       setLoggedIn(!!user)
       setUser(user)
       window.location.reload()
