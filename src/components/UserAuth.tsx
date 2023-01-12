@@ -11,6 +11,14 @@ export default function UserAuth() {
 
   const { user, login, signup, logout } = useContext(AuthContext);
 
+  console.log(user)
+
+  const getRoles = (user) => {
+    return user?.app_metadata.roles.map( (role) => {
+      <span> {role} </span>
+    })
+  }
+
   const manageSubscription = () => {
     fetch("/.netlify/functions/create-manage-link", {
       method: "POST",
@@ -29,7 +37,15 @@ export default function UserAuth() {
     <div className="wrapper">
       { user ? 
         <div className="text">
-          You are logged in as <u>{user?.user_metadata.full_name}</u>. You can <span className="button" onClick={logout}>Log out</span> or <a className="button" onClick={manageSubscription}>Manage your subscription</a>.
+          <span>
+            You are logged in as <u>{user?.user_metadata.full_name}</u> [
+          </span>
+          { user?.app_metadata.roles.map( (role) => (
+            <span className="highlight">{role}</span>
+          ))}
+          <span>
+            ]. You can <span className="button" onClick={logout}>Log out</span> or <a className="button" onClick={manageSubscription}>Manage your subscription</a>.
+          </span>
         </div>
       : 
         <div className="text">
@@ -55,6 +71,10 @@ export default function UserAuth() {
         }
         .text {
           line-height: 1.75rem;
+        }
+        .highlight {
+          background-color: yellow;
+          font-weight: 600;
         }
       `}</style>
     </div>
