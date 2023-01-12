@@ -7,7 +7,7 @@ import { TagContent } from "../lib/tags";
 
 type Props = {
   loggedIn: boolean;
-  login: React.MouseEventHandler<HTMLButtonElement>;
+  login: Function;
   logout: React.MouseEventHandler<HTMLButtonElement>;
   user: any;
 };
@@ -20,7 +20,7 @@ export default function UserText({ loggedIn, login, logout, user }: Props) {
         </div>
       : 
         <div>
-          <span className="button" onClick={login}>Log in</span> or <span className="button">Sign up</span> to view tutorials.
+          <span className="button" onClick={()=>login('login')}>Log in</span> or <span className="button" onClick={()=>login('signup')}>Sign up</span> to view tutorials.
         </div>
       }
       {/*  */}

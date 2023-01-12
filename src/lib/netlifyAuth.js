@@ -10,9 +10,13 @@ const netlifyAuth = {
     })
     netlifyIdentity.init()
   },
-  authenticate(callback) {
+  authenticate(type, callback) {
     this.isAuthenticated = true
-    netlifyIdentity.open()
+    if (type == "login"){
+      netlifyIdentity.open('login')
+    } else {
+      netlifyIdentity.open('signup')
+    }
     netlifyIdentity.on('login', (user) => {
       this.user = user
       callback(user)
