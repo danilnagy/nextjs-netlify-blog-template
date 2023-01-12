@@ -1,10 +1,25 @@
+import { GetStaticProps } from "next";
 import Layout from "../components/Layout";
 import BasicMeta from "../components/meta/BasicMeta";
 import OpenGraphMeta from "../components/meta/OpenGraphMeta";
 import TwitterCardMeta from "../components/meta/TwitterCardMeta";
 import { SocialList } from "../components/SocialList";
+import PostList from "../components/PostList";
+import UserText from "../components/UserText";
+import { countPosts, listPostContent, PostContent } from "../lib/posts";
+import { listTags, TagContent } from "../lib/tags";
+import config from "../lib/config";
 
-export default function Index() {
+type Props = {
+  posts: PostContent[];
+  tags: TagContent[];
+  pagination: {
+    current: number;
+    pages: number;
+  };
+};
+
+export default function Index({ posts, tags, pagination }: Props) {
   return (
     <Layout>
       <BasicMeta url={"/"} />
@@ -13,11 +28,13 @@ export default function Index() {
       <div className="container">
         <div>
           <h1>
-            Hi, We're Next.js & Netlify<span className="fancy">.</span>
+            Colide<span className="fancy">.</span>co
           </h1>
-          <span className="handle">@nextjs-netlify-blog</span>
-          <h2>A blog template with Next.js and Netlify.</h2>
-          <SocialList />
+          <span className="handle">by <a href="https://colidescope.com">Colidescope.com</a></span>
+          <h2>A place for learning computational design<span className="fancy">.</span></h2>
+          <UserText/>
+          {/* <SocialList /> */}
+          <PostList posts={posts} tags={tags} pagination={pagination} />
         </div>
       </div>
       <style jsx>{`
@@ -31,7 +48,7 @@ export default function Index() {
         h1 {
           font-size: 2.5rem;
           margin: 0;
-          font-weight: 500;
+          font-weight: 600;
         }
         h2 {
           font-size: 1.75rem;
@@ -39,7 +56,7 @@ export default function Index() {
           line-height: 1.25;
         }
         .fancy {
-          color: #15847d;
+          color: SteelBlue;
         }
         .handle {
           display: inline-block;
@@ -60,3 +77,19 @@ export default function Index() {
     </Layout>
   );
 }
+
+export const getStaticProps: GetStaticProps = async () => {
+  const posts = listPostContent(1, config.posts_per_page);
+  const tags = listTags();
+  const pagination = {
+    current: 1,
+    pages: Math.ceil(countPosts() / config.posts_per_page),
+  };
+  return {
+    props: {
+      posts,
+      tags,
+      pagination,
+    },
+  };
+};

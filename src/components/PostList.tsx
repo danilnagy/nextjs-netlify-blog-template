@@ -33,20 +33,20 @@ export default function PostList({ posts, tags, pagination }: Props) {
           }}
         />
       </div>
-      <ul className={"categories"}>
+      {/* <ul className={"categories"}>
         {tags.map((it, i) => (
           <li key={i}>
             <TagLink tag={it} />
           </li>
         ))}
-      </ul>
+      </ul> */}
       <style jsx>{`
         .container {
           display: flex;
           margin: 0 auto;
           max-width: 1200px;
           width: 100%;
-          padding: 0 1.5rem;
+          padding: 4rem 0 0 0;
         }
         ul {
           margin: 0;
@@ -59,9 +59,10 @@ export default function PostList({ posts, tags, pagination }: Props) {
           display: flex;
           flex-direction: column;
           flex: 1 1 auto;
+          margin-right: 1rem;
         }
         .posts li {
-          margin-bottom: 1.5rem;
+          margin-bottom: 1.0rem;
         }
         .post-list {
           flex: 1 0 auto;

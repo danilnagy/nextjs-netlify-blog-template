@@ -60,6 +60,9 @@ export default function PostLayout({
         description={description}
       />
       <div className={"container"}>
+        <div className="back">
+          <a className="button" href="/">Go back</a> to main
+        </div>
         <article>
           <header>
             <h1>{title}</h1>
@@ -82,10 +85,10 @@ export default function PostLayout({
           </ul>
         </article>
         <footer>
-          <div className={"social-list"}>
+          {/* <div className={"social-list"}>
             <SocialList />
           </div>
-          <Copyright />
+          <Copyright /> */}
         </footer>
       </div>
       <style jsx>
@@ -98,6 +101,9 @@ export default function PostLayout({
               padding: 0 1.5rem;
               box-sizing: border-box;
               z-index: 0;
+            }
+            footer {
+              padding-bottom: 4rem;
             }
             .metadata div {
               display: inline-block;
@@ -123,6 +129,23 @@ export default function PostLayout({
             .social-list {
               margin-top: 3rem;
               text-align: center;
+            }
+            
+            .back {
+              padding-bottom: 2rem;
+            }
+            .button {
+              color: black;
+              font-weight: 300;
+              padding: 0 0.25rem ;
+              background-color: LightBlue;
+              border-bottom: 3px solid SteelBlue;
+              // border: 1px solid black;
+            }
+            .button :hover {
+              color: white;
+              background-color: SteelBlue;
+              cursor: pointer;
             }
 
             @media (min-width: 769px) {

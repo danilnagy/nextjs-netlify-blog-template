@@ -1,19 +1,19 @@
 {
-  "base_url": "https://wutali-nextjs-netlify-blog.netlify.app",
-  "site_title": "Next.js Netlify Blog",
-  "site_description": "Next.js blog template for Netlify",
+  "base_url": "https://colide.co",
+  "site_title": "Colide.co",
+  "site_description": "A place for learning computational design",
   "site_keywords": [
     {
-      "keyword": "Next.js"
+      "keyword": "Design"
     },
     {
-      "keyword": "Netlify"
+      "keyword": "AI"
     },
     {
-      "keyword": "React"
+      "keyword": "Computation"
     }
   ],
-  "posts_per_page": 5,
-  "twitter_account": "@my-account",
-  "github_account": "wutali"
+  "posts_per_page": 10,
+  "twitter_account": "@colidescope",
+  "github_account": "danilnagy"
 }

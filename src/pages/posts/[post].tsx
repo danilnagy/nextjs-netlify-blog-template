@@ -50,6 +50,7 @@ export default function Post({
       description={description}
     >
       {content}
+      {/* Restricted */}
     </PostLayout>
   )
 }
