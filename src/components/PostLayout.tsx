@@ -61,7 +61,7 @@ export default function PostLayout({
         description={description}
       />
       <div className={"container"}>
-        <div className="back">
+        <div>
           <a className="button" href="/">Go back</a> to main
         </div>
         <article>
@@ -95,6 +95,9 @@ export default function PostLayout({
       </div>
       <style jsx>
         {`
+            header {
+              padding: 2rem 0;
+            }
             .container {
               display: block;
               max-width: 36rem;
@@ -133,9 +136,6 @@ export default function PostLayout({
               text-align: center;
             }
             
-            .back {
-              padding-bottom: 2rem;
-            }
             .button {
               color: black;
               font-weight: 300;

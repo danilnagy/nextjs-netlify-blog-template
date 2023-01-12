@@ -1,3 +1,4 @@
 [build]
   publish = ".next"
   command = "next build"
+  functions = "functions"

@@ -11,11 +11,25 @@ export default function UserAuth() {
 
   const { user, login, signup, logout } = useContext(AuthContext);
 
+  const manageSubscription = () => {
+    fetch("/.netlify/functions/create-manage-link", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${user.token.access_token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((link) => {
+        window.location.href = link;
+      })
+      .catch((err) => console.error(err));
+  }
+
   return (
-    <div>
+    <div className="wrapper">
       { user ? 
         <div className="text">
-          You are logged in as <u>{user?.user_metadata.full_name}</u>. You can <span className="button" onClick={logout}>Log out</span> or <a className="button">Manage your subscription</a>.
+          You are logged in as <u>{user?.user_metadata.full_name}</u>. You can <span className="button" onClick={logout}>Log out</span> or <a className="button" onClick={manageSubscription}>Manage your subscription</a>.
         </div>
       : 
         <div className="text">
@@ -23,6 +37,9 @@ export default function UserAuth() {
         </div>
       }      
       <style jsx>{`
+        .wrapper {
+          // padding: 2rem 0 0 0;
+        }
         .button {
           color: black;
           font-weight: 300;
