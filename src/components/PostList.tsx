@@ -18,7 +18,9 @@ export default function PostList({ posts, tags, pagination }: Props) {
     <div className={"container"}>
       <div className={"posts"}>
         <ul className={"post-list"}>
-          {posts.map((it, i) => (
+          {posts
+            .filter((it) => !it.prev)
+            .map((it, i) => (
             <li key={i}>
               <PostItem post={it} />
             </li>
