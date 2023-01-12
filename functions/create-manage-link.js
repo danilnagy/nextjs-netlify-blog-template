@@ -1,7 +1,12 @@
-const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
-const { faunaFetch } = require("./utils/fauna");
+import Stripe from "stripe";
+import faunaFetch from "./utils/fauna";
 
 exports.handler = async (_event, context) => {
+
+  const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
+
+  console.log(stripe);
+
   const { user } = context.clientContext;
 
   const result = await faunaFetch({
