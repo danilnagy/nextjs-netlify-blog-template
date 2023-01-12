@@ -17,7 +17,8 @@ export default function PostItem({ post }: Props) {
             a {
               color: #222;
               display: inline-block;
-              padding: 0.5rem 0;
+              padding: 0.5rem 0.5rem;
+              margin-left: -0.5rem;
               cursor: pointer;
             }
             a :hover {

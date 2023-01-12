@@ -5,12 +5,10 @@ import OpenGraphMeta from "../components/meta/OpenGraphMeta";
 import TwitterCardMeta from "../components/meta/TwitterCardMeta";
 import { SocialList } from "../components/SocialList";
 import PostList from "../components/PostList";
-import UserText from "../components/UserText";
+import UserAuth from "../components/UserAuth";
 import { countPosts, listPostContent, PostContent } from "../lib/posts";
 import { listTags, TagContent } from "../lib/tags";
 import config from "../lib/config";
-import netlifyAuth from '../lib/netlifyAuth.js'
-import { useEffect, useState } from "react";
 
 type Props = {
   posts: PostContent[];
@@ -22,31 +20,6 @@ type Props = {
 };
 
 export default function Index({ posts, tags, pagination }: Props) {
-
-  let [loggedIn, setLoggedIn] = useState(netlifyAuth.isAuthenticated)
-  let [user, setUser] = useState(null)
-
-  let login = (type) => {
-    netlifyAuth.authenticate(type, (user) => {
-      setLoggedIn(!!user)
-      setUser(user)
-      window.location.reload()
-    })
-  }
-  
-  let logout = () => {
-    netlifyAuth.signout(() => {
-      setLoggedIn(false)
-      setUser(null)
-    })
-  }
-
-  useEffect(() => {
-    netlifyAuth.initialize((user) => {
-      setLoggedIn(!!user)
-      setUser(user)
-    })
-  }, [loggedIn])
 
   return (
     <Layout>
@@ -60,7 +33,7 @@ export default function Index({ posts, tags, pagination }: Props) {
           </h1>
           <span className="handle">by <a href="https://colidescope.com">Colidescope.com</a></span>
           <h2>A place for learning computational design<span className="fancy">.</span></h2>
-          <UserText user={user} loggedIn={loggedIn} login={login} logout={logout}/>
+          <UserAuth />
           {/* <SocialList /> */}
           <PostList posts={posts} tags={tags} pagination={pagination} />
         </div>

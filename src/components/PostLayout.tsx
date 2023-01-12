@@ -12,6 +12,7 @@ import { SocialList } from "./SocialList";
 import TagButton from "./TagButton";
 import { getAuthor } from "../lib/authors";
 import { getTag } from "../lib/tags";
+import UserAuth from "../components/UserAuth";
 
 type Props = {
   title: string;
@@ -75,6 +76,7 @@ export default function PostLayout({
               </div>
             </div>
           </header>
+          <UserAuth />
           <div className={styles.content}>{children}</div>
           <ul className={"tag-list"}>
             {tags.map((it, i) => (

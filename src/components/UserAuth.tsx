@@ -4,27 +4,24 @@ import PostItem from "./PostItem";
 import TagLink from "./TagLink";
 import Pagination from "./Pagination";
 import { TagContent } from "../lib/tags";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/authContext";
 
-type Props = {
-  loggedIn: boolean;
-  login: Function;
-  logout: React.MouseEventHandler<HTMLButtonElement>;
-  user: any;
-};
-export default function UserText({ loggedIn, login, logout, user }: Props) {
+export default function UserAuth() {
+
+  const { user, login, signup, logout } = useContext(AuthContext);
+
   return (
     <div>
-      { loggedIn ? 
-        <div>
+      { user ? 
+        <div className="text">
           You are logged in as <u>{user?.user_metadata.full_name}</u>. You can <span className="button" onClick={logout}>Log out</span> or <a className="button">Manage your subscription</a>.
         </div>
       : 
-        <div>
-          <span className="button" onClick={()=>login('login')}>Log in</span> or <span className="button" onClick={()=>login('signup')}>Sign up</span> to view tutorials.
+        <div className="text">
+          <span className="button" onClick={login}>Log in</span> or <span className="button" onClick={signup}>Sign up</span> to view tutorials.
         </div>
-      }
-      {/*  */}
-      
+      }      
       <style jsx>{`
         .button {
           color: black;
@@ -38,6 +35,9 @@ export default function UserText({ loggedIn, login, logout, user }: Props) {
           color: white;
           background-color: SteelBlue;
           cursor: pointer;
+        }
+        .text {
+          line-height: 1.75rem;
         }
       `}</style>
     </div>
