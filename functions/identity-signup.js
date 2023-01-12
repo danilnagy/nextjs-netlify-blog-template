@@ -20,22 +20,23 @@ exports.handler = async (event) => {
     items: [{ price: process.env.STRIPE_DEFAULT_PRICE_PLAN }],
   });
 
-  // // store the Netlify and Stripe IDs in Fauna
-  // const result = await faunaFetch({
-  //   query: `
-  //     mutation ($netlifyID: ID!, $stripeID: ID!) {
-  //       createUser(data: { netlifyID: $netlifyID, stripeID: $stripeID }) {
-  //         netlifyID
-  //         stripeID
-  //       }
-  //     }
-  //   `,
-  //   variables: {
-  //     netlifyID: user.id,
-  //     stripeID: customer.id,
-  //   },
-  // });
-  // console.log(result);
+  // store the Netlify and Stripe IDs in Fauna
+  const result = await faunaFetch({
+    query: `
+      mutation ($netlifyID: ID!, $stripeID: ID!) {
+        createUser(data: { netlifyID: $netlifyID, stripeID: $stripeID }) {
+          netlifyID
+          stripeID
+        }
+      }
+    `,
+    variables: {
+      netlifyID: user.id,
+      stripeID: customer.id,
+    },
+  });
+  
+  console.log(result);
 
   return {
     statusCode: 200,
