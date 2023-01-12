@@ -22,6 +22,7 @@ type Props = {
   date: Date;
   slug: string;
   tags: string[];
+  roles: string[];
   author: string;
   prev: string;
   next: string;
@@ -36,6 +37,7 @@ export default function PostLayout({
   prev,
   next,
   tags,
+  roles,
   description = "",
   children,
 }: Props) {
@@ -88,18 +90,30 @@ export default function PostLayout({
             </div>
           </header>
           <UserAuth />
-          { user && 
+          { user && (roles.includes(user.app_metadata.roles[0]) ?
             <div>
               <div className={styles.content}>{children}</div> 
-              <ul className={"tag-list"}>
+              {/* <ul className={"tag-list"}>
                 {tags.map((it, i) => (
                   <li key={i}>
                     <TagButton tag={getTag(it)} />
                   </li>
                 ))}
-              </ul>
+              </ul> */}
               <NavLinks prev={prev} next={next}/>
             </div>
+            :
+            <div>
+              <div className="notice">
+                <span>{"You need a"}
+                { roles.map( (role) => {
+                  return <span className="highlight" key={role}>{role}</span>
+                }) }
+                {"account to access this content. Please use the link above to upgrade your subscription."}
+                </span>
+              </div>
+            </div>
+            )
           }
         </article>
         <footer>
@@ -151,19 +165,33 @@ export default function PostLayout({
               margin-top: 3rem;
               text-align: center;
             }
-            
+            .notice {
+              margin: 2rem 0;
+              display: flex;
+              justify-content: center;
+              padding: 1rem;
+              background-color: LightSalmon;
+              border: 2px solid Crimson;
+              line-height: 1.5rem;
+            }
             .button {
               color: black;
               font-weight: 300;
               padding: 0 0.25rem ;
               background-color: LightBlue;
               border-bottom: 3px solid SteelBlue;
-              // border: 1px solid black;
             }
             .button :hover {
               color: white;
               background-color: SteelBlue;
               cursor: pointer;
+            }
+            .highlight {
+              font-weight: 600;
+              color: white;
+              margin: 0 0.25rem;
+              padding: 0 0.25rem;
+              background-color: Crimson;
             }
 
             @media (min-width: 769px) {

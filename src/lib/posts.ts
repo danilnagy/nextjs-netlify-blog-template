@@ -10,6 +10,7 @@ export type PostContent = {
   readonly title: string;
   readonly slug: string;
   readonly tags?: string[];
+  readonly roles?: string[];
   readonly fullPath: string;
   readonly prev: string,
   readonly next: string,
@@ -40,6 +41,7 @@ export function fetchPostContent(): PostContent[] {
         date: string;
         title: string;
         tags: string[];
+        roles: string[];
         slug: string;
         fullPath: string;
         prev: string,
