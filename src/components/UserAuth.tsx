@@ -27,6 +27,7 @@ export default function UserAuth() {
     })
       .then((res) => res.json())
       .then((link) => {
+        console.log(link);
         window.location.href = link;
       })
       .catch((err) => console.error(err));

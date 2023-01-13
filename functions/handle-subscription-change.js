@@ -4,6 +4,9 @@ const { faunaFetch } = require("./utils/fauna");
 
 exports.handler = async ({ body, headers }, context) => {
   try {
+
+    console.log(`Handling subscription change: ${ process.env.STRIPE_WEBHOOK_SECRET }`)
+
     // make sure this event was sent legitimately.
     const stripeEvent = stripe.webhooks.constructEvent(
       body,
@@ -11,14 +14,12 @@ exports.handler = async ({ body, headers }, context) => {
       process.env.STRIPE_WEBHOOK_SECRET
     );
 
-    console.log("here");
-
     // bail if this is not a subscription update event
     if (stripeEvent.type !== "customer.subscription.updated") return;
 
     const subscription = stripeEvent.data.object;
 
-    console.log(subscription.customer);
+    console.log(`Received Stripe event data: ${ subscription }`)
 
     const result = await faunaFetch({
       query: `
@@ -34,19 +35,20 @@ exports.handler = async ({ body, headers }, context) => {
     });
 
     const { netlifyID } = result.data.getUserByStripeID;
+
+    console.log(`Found user: ${ netlifyID }`)
+
     const product_id = subscription.items.data[0].plan.product;
 
-    console.log(product_id);
+    console.log(`New product: ${ product_id }`)
 
     const product = await stripe.products.retrieve(product_id);
-
-    console.log(product);
 
     // take the first word of the plan name and use it as the role
     const role = product.name.split(" ")[0].toLowerCase();
     // const role = product.metadata.role;
 
-    console.log(role);
+    console.log(`New user role: ${ role }`)
 
     // send a call to the Netlify Identity admin API to update the user role
     const { identity } = context.clientContext;
