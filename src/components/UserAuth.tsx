@@ -44,7 +44,9 @@ export default function UserAuth() {
             <span className="highlight" key={role}>{role}</span>
           ))}
           <span>
-            ]. You can <span className="button" onClick={logout}>Log out</span> or <a className="button" onClick={manageSubscription}>Manage your subscription</a>.
+            ]. You can <span className="button" onClick={logout}>Log out</span>
+            { !user?.app_metadata?.roles?.includes("guest") && <span> or  <a className="button" onClick={manageSubscription}>Manage your subscription</a>. </span>}
+            
           </span>
         </div>
       : 
