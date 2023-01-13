@@ -1,19 +1,26 @@
 import Link from "next/link";
 import { TagContent } from "../lib/tags";
+import Tooltip from "../components/Tooltip";
 
 type Props = {
   prev?: string;
   next?: string;
+  nextRoles?: string[];
+  role: string;
 };
-export default function NextLink({ prev, next }: Props) {
+export default function NextLink({ prev, next, nextRoles, role }: Props) {
   return (
     <div className="container">
       { prev ? <Link href={prev}>
         <a className="button">{`< Previous`}</a>
       </Link> : <div></div>}
-      { next && <Link href={next}>
+      { next && ( nextRoles.includes(role) ? <Link href={next}>
         <a className="button">{`Next >`}</a>
-      </Link>}
+      </Link> : 
+        <Tooltip content={"FOO"} direction={"top"} roles={nextRoles}>
+          <span className="disabled">{`🔒 Next >`}</span>
+        </Tooltip>
+      ) }
       <style jsx>{`
         .container {
           padding: 2em 0 0 0;
@@ -32,6 +39,12 @@ export default function NextLink({ prev, next }: Props) {
           color: white;
           background-color: SteelBlue;
           cursor: pointer;
+        }
+        .disabled {
+          padding: 0.5rem 0.5rem;
+          background-color: LightSalmon;
+          border: 2px solid Crimson;
+          cursor: not-allowed;
         }
       `}</style>
     </div>

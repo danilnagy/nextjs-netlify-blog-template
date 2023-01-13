@@ -23,6 +23,7 @@ type Props = {
   slug: string;
   tags: string[];
   roles: string[];
+  nextRoles: string[];
   author: string;
   prev: string;
   next: string;
@@ -38,6 +39,7 @@ export default function PostLayout({
   next,
   tags,
   roles,
+  nextRoles,
   description = "",
   children,
 }: Props) {
@@ -100,12 +102,12 @@ export default function PostLayout({
                   </li>
                 ))}
               </ul> */}
-              <NavLinks prev={prev} next={next}/>
+              <NavLinks prev={prev} next={next} nextRoles={nextRoles} role={user.app_metadata.roles[0]}/>
             </div>
             :
             <div>
               <div className="notice">
-                <span>{"You need a"}
+                <span>{"🔒 You need a"}
                 { roles.map( (role) => {
                   return <span className="highlight" key={role}>{role}</span>
                 }) }

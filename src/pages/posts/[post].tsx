@@ -19,6 +19,7 @@ export type Props = {
   slug: string;
   tags: string[];
   roles?: string[];
+  nextRoles?: string[];
   author: string;
   prev?: string;
   next?: string;
@@ -39,6 +40,7 @@ export default function Post({
   slug,
   tags,
   roles = [],
+  nextRoles = [],
   author,
   prev = "",
   next = "",
@@ -53,6 +55,7 @@ export default function Post({
       slug={slug}
       tags={tags}
       roles={roles}
+      nextRoles={nextRoles}
       author={author}
       prev={prev}
       next={next}
@@ -87,6 +90,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       description: "",
       tags: data.tags,
       roles: data.roles || [],
+      nextRoles: data.nextRoles || [],
       author: data.author,
       prev: data.prev || "",
       next: data.next || "",
