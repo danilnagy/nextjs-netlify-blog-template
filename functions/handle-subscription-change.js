@@ -19,7 +19,7 @@ exports.handler = async ({ body, headers }, context) => {
 
     const subscription = stripeEvent.data.object;
 
-    console.log(`Received Stripe event data: ${ subscription }`)
+    console.log(`Received Stripe event data: ${ subscription.customer }`)
 
     const result = await faunaFetch({
       query: `
@@ -40,9 +40,9 @@ exports.handler = async ({ body, headers }, context) => {
 
     const product_id = subscription.items.data[0].plan.product;
 
-    console.log(`New product: ${ product_id }`)
-
     const product = await stripe.products.retrieve(product_id);
+
+    console.log(`New product: ${ product_id }, ${ product.name }`)
 
     // take the first word of the plan name and use it as the role
     const role = product.name.split(" ")[0].toLowerCase();
