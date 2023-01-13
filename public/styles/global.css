@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&display=swap");
 
 html,
@@ -42,3 +43,5 @@ a:hover {
   top: 0;
   left: 0;
 }
+
+
