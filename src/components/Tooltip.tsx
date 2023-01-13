@@ -58,14 +58,14 @@ export default function Tooltip({ delay, children, direction, content, roles }: 
         
         /* Absolute positioning */
         .tooltip {
-          max-width: 300px;
+          min-width: 300px;
           // white-space: normal;
           position: absolute;
           display: flex;
           // border-radius: 4px;
           border: 2px solid Crimson;
-          left: 50%;
-          transform: translateX(-50%);
+          // left: 50%;
+          // transform: translateX(-50%);
           padding: 0.5rem;
           color: black;
           background: LightSalmon;
@@ -79,7 +79,7 @@ export default function Tooltip({ delay, children, direction, content, roles }: 
         /* CSS border triangles */
         .tooltip::before {
           content: " ";
-          left: 50%;
+          right: 30px;
           border: solid transparent;
           height: 0;
           width: 0;
@@ -92,52 +92,13 @@ export default function Tooltip({ delay, children, direction, content, roles }: 
         /* Absolute positioning */
         .tooltip.top {
           bottom: 40px;
+          right: 0px;
         }
         /* CSS border triangles */
         .tooltip.top::before {
           top: 100%;
           border-top-color: Crimson;
         }
-        
-        // /* Absolute positioning */
-        // .Tooltip-Tip.right {
-        //   left: calc(100% + var(4px));
-        //   top: 50%;
-        //   transform: translateX(0) translateY(-50%);
-        // }
-        // /* CSS border triangles */
-        // .Tooltip-Tip.right::before {
-        //   left: calc(var(4px) * -1);
-        //   top: 50%;
-        //   transform: translateX(0) translateY(-50%);
-        //   border-right-color: LightSalmon;
-        // }
-        
-        // /* Absolute positioning */
-        // .Tooltip-Tip.bottom {
-        //   bottom: calc(var(4px) * -1);
-        // }
-        // /* CSS border triangles */
-        // .Tooltip-Tip.bottom::before {
-        //   bottom: 100%;
-        //   border-bottom-color: LightSalmon;
-        // }
-        
-        // /* Absolute positioning */
-        // .Tooltip-Tip.left {
-        //   left: auto;
-        //   right: calc(100% + var(4px));
-        //   top: 50%;
-        //   transform: translateX(0) translateY(-50%);
-        // }
-        // /* CSS border triangles */
-        // .Tooltip-Tip.left::before {
-        //   left: auto;
-        //   right: calc(var(4px) * -2);
-        //   top: 50%;
-        //   transform: translateX(0) translateY(-50%);
-        //   border-left-color: LightSalmon;
-        // }
         
       `}</style>
     </div>
