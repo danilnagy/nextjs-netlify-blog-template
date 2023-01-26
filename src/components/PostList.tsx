@@ -22,7 +22,7 @@ export default function PostList({ posts, tags, pagination }: Props) {
             .filter((it) => !it.prev)
             .map((it, i) => (
             <li key={i}>
-              <PostItem post={it} />
+              <PostItem post={it} index={i}/>
             </li>
           ))}
         </ul>
@@ -48,7 +48,7 @@ export default function PostList({ posts, tags, pagination }: Props) {
           margin: 0 auto;
           max-width: 1200px;
           width: 100%;
-          padding: 4rem 0 0 0;
+          // padding: 4rem 0 0 0;
         }
         ul {
           margin: 0;

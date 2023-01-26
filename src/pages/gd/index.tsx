@@ -1,16 +1,16 @@
 import { GetStaticProps } from "next";
-import Layout from "../components/Layout";
-import BasicMeta from "../components/meta/BasicMeta";
-import OpenGraphMeta from "../components/meta/OpenGraphMeta";
-import TwitterCardMeta from "../components/meta/TwitterCardMeta";
-import { SocialList } from "../components/SocialList";
-import PostList from "../components/PostList";
-import UserAuth from "../components/UserAuth";
-import { countPosts, listPostContent, PostContent } from "../lib/posts";
-import { listTags, TagContent } from "../lib/tags";
-import config from "../lib/config";
+import Layout from "../../components/Layout";
+import BasicMeta from "../../components/meta/BasicMeta";
+import OpenGraphMeta from "../../components/meta/OpenGraphMeta";
+import TwitterCardMeta from "../../components/meta/TwitterCardMeta";
+import { SocialList } from "../../components/SocialList";
+import PostList from "../../components/PostList";
+import UserAuth from "../../components/UserAuth";
+import { countPosts, listPostContent, PostContent } from "../../lib/posts";
+import { listTags, TagContent } from "../../lib/tags";
+import config from "../../lib/config";
 import { useContext } from "react";
-import { AuthContext } from "../contexts/authContext";
+import { AuthContext } from "../../contexts/authContext";
 
 type Props = {
   posts: PostContent[];
@@ -19,9 +19,10 @@ type Props = {
     current: number;
     pages: number;
   };
+  mode: string;
 };
 
-export default function Index({ posts, tags, pagination }: Props) {
+export default function Index({ posts, tags, pagination, mode }: Props) {
 
   const { user, login, signup, logout } = useContext(AuthContext);
 
@@ -32,14 +33,13 @@ export default function Index({ posts, tags, pagination }: Props) {
       <TwitterCardMeta url={"/"} />
       <div className="container">
         <div>
-          <h1>
-            Colide<span className="fancy">.</span>co
-          </h1>
+          <h1>computerlab<span className="fancy">.</span>app<span className="fancy">/</span>gd</h1>
           <span className="handle">by <a href="https://colidescope.com">Colidescope.com</a></span>
-          <h2>A place for learning computational design<span className="fancy">.</span></h2>
-          <UserAuth />
+          { mode !== "test" && <UserAuth />}
+          <h2>Generative design course</h2>
           {/* <SocialList /> */}
-          { user && <PostList posts={posts} tags={tags} pagination={pagination} /> }
+          {/* { user && <PostList posts={posts} tags={tags} pagination={pagination} /> } */}
+          <PostList posts={posts} tags={tags} pagination={pagination} />
         </div>
       </div>
       <style jsx>{`
@@ -95,6 +95,7 @@ export const getStaticProps: GetStaticProps = async () => {
       posts,
       tags,
       pagination,
+      mode: process.env.MODE || "none",
     },
   };
 };

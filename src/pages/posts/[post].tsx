@@ -25,6 +25,7 @@ export type Props = {
   next?: string;
   description?: string;
   source: MdxRemote.Source;
+  mode: string;
 };
 
 const components = { InstagramEmbed, YouTube, TwitterTweetEmbed };
@@ -46,6 +47,7 @@ export default function Post({
   next = "",
   description = "",
   source,
+  mode,
 }: Props) {
   const content = hydrate(source, { components })
   return (
@@ -60,6 +62,7 @@ export default function Post({
       prev={prev}
       next={next}
       description={description}
+      mode={mode}
     >
       {content}
       {/* Restricted */}
@@ -94,7 +97,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       author: data.author,
       prev: data.prev || "",
       next: data.next || "",
-      source: mdxSource
+      source: mdxSource,
+      mode: process.env.MODE || "none",
     },
   };
 };

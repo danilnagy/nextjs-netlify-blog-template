@@ -38,7 +38,7 @@ export default function UserAuth() {
       { user ? 
         <div className="text">
           <span>
-            You are logged in as <u>{user?.user_metadata.full_name}</u> [
+            Welcome <u>{user?.user_metadata.full_name}</u> [
           </span>
           { user?.app_metadata?.roles?.map( (role) => (
             <span className="highlight" key={role}>{role}</span>
@@ -51,7 +51,8 @@ export default function UserAuth() {
         </div>
       : 
         <div className="text">
-          <span className="button" onClick={login}>Log in</span> or <span className="button" onClick={signup}>Sign up</span> to access site content.
+          <span>Welcome. Please <span className="button" onClick={login}>Log in</span> or <span className="button" onClick={signup}>Sign up</span> to access all site content.
+          </span>
         </div>
       }      
       <style jsx>{`

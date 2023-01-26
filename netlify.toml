@@ -2,3 +2,8 @@
   publish = ".next"
   command = "next build"
   functions = "functions"
+
+[[redirects]]
+  from = "/"
+  to = "/gd"
+  status = 301

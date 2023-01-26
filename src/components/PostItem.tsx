@@ -5,13 +5,14 @@ import { parseISO } from "date-fns";
 
 type Props = {
   post: PostContent;
+  index: number;
 };
-export default function PostItem({ post }: Props) {
+export default function PostItem({ post, index }: Props) {
   return (
     <Link href={"/posts/" + post.slug}>
       <a>
         {/* <Date date={parseISO(post.date)} /> */}
-        <h2>{post.title}</h2>
+        <h2>{`${index+1}. ${post.title}`}</h2>
         <style jsx>
           {`
             a {

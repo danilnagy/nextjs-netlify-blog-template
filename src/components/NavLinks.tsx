@@ -14,7 +14,7 @@ export default function NextLink({ prev, next, nextRoles, role }: Props) {
       { prev ? <Link href={prev}>
         <a className="button">{`< Previous`}</a>
       </Link> : <div></div>}
-      { next && ( nextRoles.includes(role) ? <Link href={next}>
+      { next && ( nextRoles.includes(role) || nextRoles.length == 0 ? <Link href={next}>
         <a className="button">{`Next >`}</a>
       </Link> : 
         <Tooltip content={"FOO"} direction={"top"} roles={nextRoles}>

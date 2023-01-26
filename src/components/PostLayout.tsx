@@ -29,6 +29,7 @@ type Props = {
   next: string;
   description?: string;
   children: React.ReactNode;
+  mode: string;
 };
 export default function PostLayout({
   title,
@@ -42,6 +43,7 @@ export default function PostLayout({
   nextRoles,
   description = "",
   children,
+  mode,
 }: Props) {
 
   const keywords = tags.map(it => getTag(it).name);
@@ -91,8 +93,8 @@ export default function PostLayout({
               </div>
             </div>
           </header>
-          <UserAuth />
-          { user && (roles.includes(user.app_metadata.roles[0]) ?
+          { mode !== "test" && <UserAuth />}
+          { (user && (roles.includes(user.app_metadata.roles[0])) || roles.length == 0 ?
             <div>
               <div className={styles.content}>{children}</div> 
               {/* <ul className={"tag-list"}>
@@ -102,7 +104,7 @@ export default function PostLayout({
                   </li>
                 ))}
               </ul> */}
-              <NavLinks prev={prev} next={next} nextRoles={nextRoles} role={user.app_metadata.roles[0]}/>
+              <NavLinks prev={prev} next={next} nextRoles={nextRoles} role={user?.app_metadata.roles[0]}/>
             </div>
             :
             <div>
@@ -128,11 +130,11 @@ export default function PostLayout({
       <style jsx>
         {`
             header {
-              padding: 2rem 0;
+              margin: 2rem 0;
             }
             .container {
               display: block;
-              max-width: 36rem;
+              max-width: 1200px;
               width: 100%;
               margin: 0 auto;
               padding: 0 1.5rem;
