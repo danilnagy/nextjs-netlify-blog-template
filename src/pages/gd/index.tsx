@@ -32,7 +32,7 @@ export default function Index({ posts, tags, pagination, mode }: Props) {
       <OpenGraphMeta url={"/"} />
       <TwitterCardMeta url={"/"} />
       <div className="container">
-        <div>
+        <div className="card">
           <h1>computerlab<span className="fancy">.</span>app<span className="fancy">/</span>gd</h1>
           <span className="handle">by <a href="https://colidescope.com">Colidescope.com</a></span>
           { mode !== "test" && <UserAuth />}
@@ -48,7 +48,13 @@ export default function Index({ posts, tags, pagination, mode }: Props) {
           align-items: center;
           justify-content: center;
           flex: 1 1 auto;
-          padding: 0 1.5rem;
+          // padding: 0 1.5rem;
+        }
+        .card {
+          padding: 3rem 1rem;
+          background-color: white;
+          width: 100%;
+          // box-shadow: 0px 0px 50px 0px rgb(0 0 0 / 8%);
         }
         h1 {
           font-size: 1.5rem;
@@ -71,7 +77,13 @@ export default function Index({ posts, tags, pagination, mode }: Props) {
           letter-spacing: 0.05em;
         }
 
-        @media (min-width: 769px) {
+        @media (min-width: 576px) {
+          .card {
+            // min-width: calc(576px + 6rem);
+            padding: 3rem;
+          }
+        }
+        @media (min-width: 768px) {
           h1 {
             font-size: 2rem;
           }
@@ -81,7 +93,11 @@ export default function Index({ posts, tags, pagination, mode }: Props) {
           handle {
             font-size: 1rem;
           }
+          .card {
+            max-width: calc(768px - 6rem);
+          }
         }
+
       `}</style>
     </Layout>
   );

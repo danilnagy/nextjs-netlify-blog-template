@@ -139,17 +139,18 @@
 }
 
 .content img {
-  width: 100%;
-  /* width: auto; */
+  width: calc(100% + 4rem);
+  max-width: 1000px;
+  margin: 0 -2rem;
   height: auto; 
 }
 
 .content img[src$='#img-left'] { 
   width: auto;
   min-width: 0;
+  max-width: 100%;
   display: table;
-  padding: 24px 55px 45px 0px;
-  margin: -24px;
+  margin: 0 2rem 1rem -2rem;
   float: left;
   clear: both;
 }
@@ -165,7 +166,7 @@
   clear: both;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   .content h2,
   .content h3,
   .content h4,

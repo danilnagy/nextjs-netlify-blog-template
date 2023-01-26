@@ -76,7 +76,7 @@ export default function PostList({ posts, tags, pagination }: Props) {
           margin-bottom: 0.75em;
         }
 
-        @media (min-width: 769px) {
+        @media (min-width: 768px) {
           .categories {
             display: block;
           }

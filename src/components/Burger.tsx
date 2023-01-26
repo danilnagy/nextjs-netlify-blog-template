@@ -48,7 +48,7 @@ export default function Burger({ active, onClick }: Props) {
             transform: rotate(-45deg);
           }
 
-          @media (min-width: 769px) {
+          @media (min-width: 768px) {
             .container {
               display: none;
             }

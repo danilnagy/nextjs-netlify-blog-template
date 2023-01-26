@@ -41,7 +41,7 @@ export default function PostItem({ post, index }: Props) {
               font-weight: 400;
               // line-height: 1.25;
             }
-            @media (min-width: 769px) {
+            @media (min-width: 768px) {
               h2 {
                 font-size: 1.75rem;
               }

@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import styles from "../../public/styles/content.module.css";
 import Author from "./Author";
 import Copyright from "./Copyright";
@@ -79,7 +80,9 @@ export default function PostLayout({
       />
       <div className={"container"}>
         <div className="topLinks">
-          <a className="button" href="/">Go back</a> to main
+          <Link href={'/'}>
+            <a className="button">{`< Go back`}</a>
+          </Link> to main
         </div>
         <article>
           <header>
@@ -146,6 +149,10 @@ export default function PostLayout({
             }
             .topLinks {
               z-index: 10;
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              gap: 0.5rem;
             }
             footer {
               padding-bottom: 4rem;
@@ -158,6 +165,7 @@ export default function PostLayout({
               flex: 1 0 auto;
               padding: 2rem;
               background-color: white;
+              // box-shadow: 0px 0px 50px 0px rgb(0 0 0 / 8%);
             }
             h1 {
               margin: 0 0 0.5rem;
@@ -189,9 +197,10 @@ export default function PostLayout({
             .button {
               color: black;
               font-weight: 300;
-              padding: 0 0.25rem ;
+              padding: 0.25rem 0.5rem;
               background-color: LightBlue;
               border-bottom: 3px solid SteelBlue;
+              // border: 1px solid black;
             }
             .button :hover {
               color: white;
@@ -206,7 +215,7 @@ export default function PostLayout({
               background-color: Crimson;
             }
 
-            @media (min-width: 769px) {
+            @media (min-width: 768px) {
               .container {
                 display: flex;
                 flex-direction: column;

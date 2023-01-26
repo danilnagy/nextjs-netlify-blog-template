@@ -67,7 +67,7 @@ export default function TagPostList({ posts, tag, pagination }: Props) {
             margin-bottom: 1.5rem;
           }
 
-          @media (min-width: 769px) {
+          @media (min-width: 768px) {
             h1 {
               font-size: 2rem;
             }
