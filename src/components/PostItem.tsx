@@ -31,9 +31,20 @@ export default function PostItem({ post, index }: Props) {
               background-color: steelblue;
               box-shadow: none;
             }
+            // h2 {
+            //   margin: 0;
+            //   font-weight: 500;
+            // }
             h2 {
               margin: 0;
-              font-weight: 500;
+              font-size: 1.25rem;
+              font-weight: 400;
+              // line-height: 1.25;
+            }
+            @media (min-width: 769px) {
+              h2 {
+                font-size: 1.75rem;
+              }
             }
           `}
         </style>

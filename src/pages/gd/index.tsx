@@ -51,12 +51,12 @@ export default function Index({ posts, tags, pagination, mode }: Props) {
           padding: 0 1.5rem;
         }
         h1 {
-          font-size: 2.5rem;
+          font-size: 2.0rem;
           margin: 0;
           font-weight: 600;
         }
         h2 {
-          font-size: 1.75rem;
+          font-size: 1.5rem;
           font-weight: 400;
           line-height: 1.25;
         }
