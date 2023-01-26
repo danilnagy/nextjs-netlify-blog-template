@@ -30,7 +30,7 @@ export default function Layout({ children }: Props) {
             display: flex;
             min-height: 100%;
           }
-          @media (min-width: 1200px) {
+          @media (min-width: 1000px) {
             .root {
               display: flex;
               flex: 1 0 auto;

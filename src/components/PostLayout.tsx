@@ -78,7 +78,7 @@ export default function PostLayout({
         description={description}
       />
       <div className={"container"}>
-        <div>
+        <div className="topLinks">
           <a className="button" href="/">Go back</a> to main
         </div>
         <article>
@@ -104,7 +104,6 @@ export default function PostLayout({
                   </li>
                 ))}
               </ul> */}
-              <NavLinks prev={prev} next={next} nextRoles={nextRoles} role={user?.app_metadata.roles[0]}/>
             </div>
             :
             <div>
@@ -120,6 +119,10 @@ export default function PostLayout({
             )
           }
         </article>
+        { (user && (roles.includes(user.app_metadata.roles[0])) || roles.length == 0 &&
+            <NavLinks prev={prev} next={next} nextRoles={nextRoles} role={user?.app_metadata.roles[0]}/>
+          )
+        }
         <footer>
           {/* <div className={"social-list"}>
             <SocialList />
@@ -130,16 +133,19 @@ export default function PostLayout({
       <style jsx>
         {`
             header {
-              margin: 2rem 0;
+              margin: 0 0 2rem 0;
             }
             .container {
               display: block;
-              max-width: 1200px;
+              max-width: 1000px;
               width: 100%;
               margin: 0 auto;
-              padding: 0 1.5rem;
+              // padding: 0 1.5rem;
               box-sizing: border-box;
               z-index: 0;
+            }
+            .topLinks {
+              z-index: 10;
             }
             footer {
               padding-bottom: 4rem;
@@ -150,6 +156,8 @@ export default function PostLayout({
             }
             article {
               flex: 1 0 auto;
+              padding: 2rem;
+              background-color: white;
             }
             h1 {
               margin: 0 0 0.5rem;

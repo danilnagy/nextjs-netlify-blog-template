@@ -23,7 +23,7 @@ export default function NextLink({ prev, next, nextRoles, role }: Props) {
       ) }
       <style jsx>{`
         .container {
-          padding: 2em 0 0 0;
+          // padding: 2em 0 0 0;
           display: flex;
           justify-content: space-between;
         }

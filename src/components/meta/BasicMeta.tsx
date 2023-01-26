@@ -18,7 +18,7 @@ export default function BasicMeta({
   return (
     <Head>
       <title>
-        {title ? [title, config.site_title].join(" | ") : config.site_title}
+        {title ? [title, config.site_title].join(" ") : config.site_title}
       </title>
       <meta
         name="description"

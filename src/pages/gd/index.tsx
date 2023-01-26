@@ -28,7 +28,7 @@ export default function Index({ posts, tags, pagination, mode }: Props) {
 
   return (
     <Layout>
-      <BasicMeta url={"/"} />
+      <BasicMeta url={"/"} title={"Generative Design"} />
       <OpenGraphMeta url={"/"} />
       <TwitterCardMeta url={"/"} />
       <div className="container">
@@ -36,7 +36,7 @@ export default function Index({ posts, tags, pagination, mode }: Props) {
           <h1>computerlab<span className="fancy">.</span>app<span className="fancy">/</span>gd</h1>
           <span className="handle">by <a href="https://colidescope.com">Colidescope.com</a></span>
           { mode !== "test" && <UserAuth />}
-          <h2>Generative design course</h2>
+          <h2>Generative design</h2>
           {/* <SocialList /> */}
           {/* { user && <PostList posts={posts} tags={tags} pagination={pagination} /> } */}
           <PostList posts={posts} tags={tags} pagination={pagination} />

@@ -62,9 +62,13 @@ export function fetchPostContent(): PostContent[] {
 
       return matterData;
     });
+  
+  // Filter out posts with prev tag
+  // const filteredPosts = allPostsData.filter(post => !post.prev)
+  
   // Sort posts by date
   postCache = allPostsData.sort((a, b) => {
-    if (a.date < b.date) {
+    if (a.date > b.date) {
       return 1;
     } else {
       return -1;
