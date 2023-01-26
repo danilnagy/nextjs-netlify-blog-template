@@ -56,7 +56,7 @@ export default function Index({ posts, tags, pagination, mode }: Props) {
           font-weight: 600;
         }
         h2 {
-          font-size: 1.5rem;
+          font-size: 2.0rem;
           font-weight: 400;
           line-height: 1.25;
         }
@@ -75,7 +75,7 @@ export default function Index({ posts, tags, pagination, mode }: Props) {
             font-size: 3rem;
           }
           h2 {
-            font-size: 2.25rem;
+            font-size: 3.00rem;
           }
         }
       `}</style>
