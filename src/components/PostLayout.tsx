@@ -165,7 +165,7 @@ export default function PostLayout({
               flex: 1 0 auto;
               padding: 2rem;
               background-color: white;
-              // box-shadow: 0px 0px 50px 0px rgb(0 0 0 / 8%);
+              box-shadow: 0px 0px 75px 0px rgb(0 0 0 / 5%);
             }
             h1 {
               margin: 0 0 0.5rem;

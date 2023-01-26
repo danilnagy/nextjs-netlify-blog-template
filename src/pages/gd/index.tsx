@@ -54,7 +54,7 @@ export default function Index({ posts, tags, pagination, mode }: Props) {
           padding: 3rem 1rem;
           background-color: white;
           width: 100%;
-          // box-shadow: 0px 0px 50px 0px rgb(0 0 0 / 8%);
+          box-shadow: 0px 0px 75px 0px rgb(0 0 0 / 5%);
         }
         h1 {
           font-size: 1.5rem;
