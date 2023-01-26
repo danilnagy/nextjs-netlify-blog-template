@@ -52,9 +52,9 @@ export default function Index({ posts, tags, pagination, mode }: Props) {
         }
         .card {
           padding: 3rem 1rem;
-          background-color: white;
+          // background-color: white;
           width: 100%;
-          box-shadow: 0px 0px 75px 0px rgb(0 0 0 / 5%);
+          // box-shadow: 0px 0px 75px 0px rgb(0 0 0 / 5%);
         }
         h1 {
           font-size: 1.5rem;
