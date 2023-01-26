@@ -1,0 +1,67 @@
+---
+slug: working-in-grasshopper-1
+title: Working in Grasshopper (1/4)
+date: 2023-01-10
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+prev: /posts/working-in-grasshopper
+next: /posts/working-in-grasshopper-2
+roles:
+nextRoles:
+---
+
+## Components
+
+Components are the core of Grasshopper. They define all of the individual operations that Grasshopper can do. Components are the tools in your computational toolbox 🧰.
+
+Just like a carpenter has to first learn how all the tools in their toolbox work before they know what is appropriate for each job, a large part of learning Grasshopper is getting familiar with all of the components that Grasshopper has to offer. A component-by-component glossary is useful, but would not make for a good tutorial or an engaging online course. So we will get familiar with components the fun way: by using them to develop working definitions in the [exercise lessons](https://medium.com/intro-to-grasshopper/search?q=exercise) of this course.
+
+For now, let’s look at some of the general concepts behind components, and how they come together to form our Grasshopper definitions.
+
+### Component types
+
+![description](/images/4-3-2.png)
+
+There are three types of components in Grasshopper:
+
+1. General components
+2. Inputs
+3. Containers
+
+### General components
+
+Most components are of the ‘General’ type. These components represent individual operations that do stuff in the definition. You can think of each component as a small function that takes in a set of inputs, processes them a certain way, and generates a set of outputs as a result.
+
+![description](/images/4-3-3.png)
+
+The component’s inputs are represented as ‘ports’ on the left of the component, while the outputs are represented by ‘ports’ on the right. Wires can be connected to these ports to pass data from the outputs of one component to the inputs of another.
+
+### Inputs
+
+Inputs are a special component type that allows us to bring data into our definitions. All the inputs components can be found in the ‘Input’ group within the ‘Params’ tab first from the left.
+
+![description](/images/4-3-4.png)
+
+The most common input components allow us to generate data dynamically within the definition. For example, we can use a `Number Slider` to choose a number using a visual slider, a `Panel` to type numbers or text into a textbox, or a `Boolean Toggle` to flip a switch to set a True/False condition.
+
+![description](/images/4-3-5.png)
+
+Some of the more advanced input components bring data in from outside sources. For example, an `Image Sampler` imports pixel information from image files, while the ‘Import’ components bring data in from various other file types.
+
+### Containers
+
+‘Container’ components are another special type in Grasshopper. There are found in the ‘Geometry’ and ‘Primitive’ groups within the ‘Params’ tab first from the left. These are called ‘containers’ because they don’t do anything other than store data. These components have one input port that accepts the data and one output port that passes it on.
+
+The ‘container’ components are special because each one can only hold data of a specific type, and there is one ‘container’ component for each type of data supported by Grasshopper. The data types are split into two main categories:
+
+1. **Primitive** data types are all the standard types like numbers, booleans, and text which are not directly related to geometric elements.
+
+2. **Geometric** data types are all of the different kinds of geometry supported by Rhino and Grasshopper. In addition to the common types you might use in Rhino like lines, curves, surfaces, and meshes, there are also lower-level geometry types such as points, vectors, and planes. These types are usually not exposed in a visual modeling environment but are crucial when we start to define our geometries computationally.
+
+![description](/images/4-3-6.png)
+
+_Primitive data types (left) and Geometry data types (right)_
+
+There are two ways to bring data into a ‘container’ component: pass the data in through the input port, or right-click on the component and use the ‘Set…’ options to set the data directly. With primitive data types, you can enter one or more values directly using a text box. With geometric data types, you will be sent to the Rhino window to either define the geometry directly or reference it from an object in the Rhino document. We’ve already seen an example of this in the [last exercise](https://medium.com/p/c3cd53dd19d5#37b1) where we used a `Point` container component to create a base point for our model.

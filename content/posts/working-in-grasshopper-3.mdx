@@ -1,0 +1,39 @@
+---
+slug: working-in-grasshopper-3
+title: Working in Grasshopper (3/4)
+date: 2023-01-10
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+prev: /posts/working-in-grasshopper-1
+next: /posts/working-in-grasshopper-4
+roles:
+nextRoles: 
+---
+
+# Connecting components with wires
+
+To pass data from one component to another you connect their ports using wires. To create a wire, click on either an input or output port, and while holding down the mouse button drag your mouse over a port of another component you want to connect it to. When you hover over a valid port, the wire will snap into place and turn solid, meaning you can make the connection. Release the mouse button to create the wire, which will now be shown on the canvas.
+
+![description](/images/4-3-13.gif)
+
+The visual representation of the wire depends on the nature of the data flowing through it. With a single piece of data, for example one number, the wire will be a single line. If it is carrying several pieces of data in a List, the wire will be a double line. If it is carrying data in a more complex structure known as a DataTree, the wire will be dashed. We will cover Lists and DataTrees in more detail later in the course.
+
+![description](/images/4-3-14.png)
+
+# Making the data flow
+
+When you connect the output of one component to an input of another, you are carrying the data produced by the first component to the second component which will use it to create its own outputs. These connections create dependencies between the components, as the second component won’t be able to do what it needs to do unless it receives the proper data from the component “upstream”. This creates a “flow” of data through the definition — starting from the initial inputs on the left and ending with the final results on the right.
+
+Unlike other types of computer programs, Grasshopper definitions are “[steady-state](https://en.wikipedia.org/wiki/Steady_state)” programs, meaning that the definition only calculates when something has been changed, but otherwise is inactive. While a definition is being calculated the interface is frozen, and only after a definition has been fully processed will you be able to navigate the Grasshopper and Rhino windows and see a preview of the generated geometry.
+
+Because of its steady-state nature, Grasshopper does not allow connections that form “loops” in the definition, which happen when an output of one component is passed as an input to another component on which the original component depends. Although loops are a common tool in traditional text-based programming, in Grasshopper loops would create an infinite perpetual cycle which would cause it to freeze permanently, so they are not allowed by default. Later in the course, we will look at an external library that allows these kinds of loops through special components.
+
+![description](/images/4-3-15.gif)
+
+The steady-state nature of Grasshopper also means that components only run when they need to, which is any time the data they depend on is changed. When you change a component ‘up-stream’, any component that depends on it ‘down-stream’ will be recalculated, while any components that don’t depend on it will remain unchanged. Although in the beginning this may seem like a technical detail, as your definitions become more complex it is important to consider these dependencies to make sure your definition is working as efficiently as possible.
+
+![description](/images/4-3-16.gif)
+
+_When we turn off one slider, any component that depends on it will be affected, while other components will remain unchanged._
