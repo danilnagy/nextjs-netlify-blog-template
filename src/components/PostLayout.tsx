@@ -148,6 +148,7 @@ export default function PostLayout({
               z-index: 0;
             }
             .topLinks {
+              padding: 0 1rem;
               z-index: 10;
               display: flex;
               justify-content: flex-start;
@@ -219,6 +220,11 @@ export default function PostLayout({
               .container {
                 display: flex;
                 flex-direction: column;
+              }
+            }
+            @media (min-width: 1024px) {
+              .topLinks {
+                padding: 0;
               }
             }
           `}
