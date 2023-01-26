@@ -51,7 +51,7 @@ export default function Index({ posts, tags, pagination, mode }: Props) {
           padding: 0 1.5rem;
         }
         h1 {
-          font-size: 2.0rem;
+          font-size: 1.5rem;
           margin: 0;
           font-weight: 600;
         }
@@ -66,16 +66,20 @@ export default function Index({ posts, tags, pagination, mode }: Props) {
         .handle {
           display: inline-block;
           margin-top: 0.275em;
+          font-size: 1rem;
           color: #9b9b9b;
           letter-spacing: 0.05em;
         }
 
         @media (min-width: 769px) {
           h1 {
-            font-size: 3rem;
+            font-size: 2rem;
           }
           h2 {
             font-size: 3.00rem;
+          }
+          handle {
+            font-size: 1rem;
           }
         }
       `}</style>
