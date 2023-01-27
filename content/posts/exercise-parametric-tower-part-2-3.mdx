@@ -1,0 +1,59 @@
+---
+slug: "exercise-parametric-tower-part-2-3"
+title: "Exercise: Parametric tower - Part 2 (3/4)"
+date: 2023-01-17
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+prev: /posts/exercise-parametric-tower-part-2-2
+next: /posts/exercise-parametric-tower-part-2-4
+roles:
+nextRoles:
+---
+
+### Step 5: Rebuilding the panels
+
+Once we’ve defined the scaled Surfaces, we can extract the edges of both sets of Surfaces so we can use them to define the final panel geometry.
+
+![description](/images/4-6-17.png#img-left)
+
+To extract the edges of a Surface or Polysurface object, we can use the `Brep Edges` component. This component produces both the naked edges (En) which are on the boundary of a Surface or Polysurface object, as well as the interior edges (Ei) where two Surfaces are joined within a Polysurface. Since our panels are represented by singles Surfaces, we are only interested in the naked edges which form the Surface’s outer boundaries. Let’s create two new `Brep Edges` components and connect them to both the original and scaled Surfaces.
+
+![description](/images/4-6-18.png)
+
+![description](/images/4-6-19.png#img-left)
+
+Next, let’s combine the two sets of edge curves into a single data stream using the Merge component. This component will combine multiple data sets into one based on the structure of the data coming in:
+
+- Merging **single elements** will create a **List** with the elements ordered based on the order they were input into the component
+
+- Merging multiple **Lists** will create one **List** with all elements ordered based on the order they were input into the component
+
+- Merging **DataTrees** will create a new **DataTree** with elements combined in branches with the same path. Remember that a List is just a DataTree with a single branch, so if you combine a DataTree with a List it will put the List’s data on the default {0;0} branch of the new DataTree.
+
+The Merge component supports an unlimited number of input streams and has a [zoomable UI](https://medium.com/p/1dc644e13212/#dc6b) which you can use to add and remove inputs. A new input will be automatically added every time you plug one in, which also speeds up the workflow. Let’s create a new Merge component on the canvas and connect to it both sets of edge curves.
+
+Since our edge curve data is in DataTree format, it is very important that both DataTrees share the exact same structure, so that all the curves from one panel end up on the same branch. Some components may add extra levels of hierarchy to data as it’s passed through them, which can mess up the matching during Merge. To ensure that both inputs have the simplest possible DataTree representation, we can right-click on both inputs and select the ‘Simplify’ [filter](https://medium.com/p/179be560f086#5165).
+
+![description](/images/4-6-20.png)
+
+_Results of Merge operation showing DataTree with branches organized according to building floor and panel, with 8 curves on each branch defining the boundary edges of each panel._
+
+![description](/images/4-6-21.png#img-left)
+
+Once we have all the panel boundary curves in individual branches of a single DataTree, we can pass them into a `Boundary Surfaces` component to construct the final panel geometry. This component is similar to Rhino’s PlanarSrf command. It takes in any number of co-planar flat curves and creates a single surface trimmed to the edges of all the curves. For curves completely contained within curves such as our example, it trims a hole within the larger surface.
+
+![description](/images/4-6-22.png#img-left)
+
+Once we have all the panel geometries, the last step is to join all the panels on each floor together to create a single Polysurface for each floor. We can do this using the `Brep Join` component, which will take any number of Surfaces or Polysurfaces and combine them into a single Polysurface if they share a common edge.
+
+Before we can join the panels together, we need to make sure that all the Surface geometries we want to join are located on the same branch. Remember that components are designed to take a certain number of items in each input. If a component’s input is designed to take one item and you pass into it a List or DataTree, the component will run once for each item. The `Brep Join` component is designed to take a List of Surfaces and join them all together. When we pass a DataTree of Surfaces, the component will run once for each branch, attempting to join all the surfaces contained in each.
+
+![description](/images/4-6-23.png#img-left)
+
+Currently, each of our panel Surfaces are on separate branches, so nothing will happen if we try to join them. To get all the panels on one floor to be on the same branch, we need to remove the last level of hierarchy in the DataTree (based on how we constructed the model, the first level of hierarchy represents the floors and the second level represents the panels). An easy way to remove the last branch level of a DataTree is by using the `Trim Tree` component, which will merge outer branches of a DataTree based on the Depth (D) provided. The default depth is set to 1, which trims the most outer branch.
+
+As an alternative, you can use the [`Path Mapper`](https://medium.com/p/179be560f086/#884f) component with the “Trim” preset. This will put all the panel geometries on the same floor on the same branch, going back to the DataTree structure we had originally (before the `Edges` components added a level of hierarchy). Now when we input the trimmed DataTree into the `Join` component, all the panel geometries will be joined into one Polysurface per floor.
+
+![description](/images/4-6-24.png)
