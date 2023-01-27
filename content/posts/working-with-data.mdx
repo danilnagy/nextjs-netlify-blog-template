@@ -1,0 +1,24 @@
+---
+slug: working-with-data
+title: Working with data
+date: 2023-01-17
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+next: /posts/working-with-data-1
+roles:
+nextRoles:
+---
+
+## Working with sets of data
+
+At the heart of any Grasshopper definition is the data. Grasshopper components process and create data, while wires transport the data between different components. In the [last exercise](https://medium.com/intro-to-grasshopper/exercise-parametric-tower-part-1-bdbad26bc6ca), you may have already noticed that some wires look different from each other. This is because the visualization of the wire changes based on the structure of the data flowing through it. There are three types of data that can flow through a wire in Grasshopper:
+
+- **Item** — one data element, for example one curve object
+- **List** — an ordered set of elements, for example 10 points
+- **DataTree** — a more complex data structure composed of two or more Lists
+
+![description](/images/4-5-1.png)
+
+DataTrees are the subject of the next lesson section. For now, let’s focus on Lists, and how to work with them in Grasshopper.
