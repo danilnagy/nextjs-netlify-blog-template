@@ -1,0 +1,76 @@
+---
+slug: conditionals-and-loops-1
+title: Conditionals and Loops (1/3)
+date: 2023-02-07
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+prev: /posts/conditionals-and-loops
+next: /posts/conditionals-and-loops-2
+roles:
+nextRoles:
+---
+
+## Conditionals
+
+Conditionals are structures within a script which can execute different lines of code based on certain 'conditions' being met. In Python, the most basic type of Conditional will test a Boolean to see if it is `True`, and then execute some code if it passes:
+
+```python
+b = True
+if b:
+    print('b is True')
+```
+
+Here, since `b` is in fact `True`, it passes the test, causing the code that is inset after the `if b:` line to execute. Try to run the code again, this time setting b to False to see that nothing happens. In this case, if `b` does not pass the test, the entire block of inset code after the first conditional line is skipped over and ignored. In this code, `if b:` is shorthand for `if b == True:`. If you want to test for Falseness, you could use the Python shorthand `if not b:` or write the full `if b == False:`.
+
+### Code structures and indents
+
+In Python, a line ending with a colon (`:`) followed by lines of code inset with tabs is a basic syntax for creating hierarchical structure, and is used with all code structures including Conditionals, Loops, Functions, and Classes. The trick is that Python is very particular about how these insets are specified. You have the option of using tabs or a series of spaces, but you cannot mix and match, and you have to be very explicit about the number of each that you use based on the level of the structure. For instance, this code:
+
+```python
+b = False
+if b:
+    print('b is True')
+    print('b is False')
+```
+
+will skip both `print()` lines if b is `False`. However, by deleting the indent on the last line, you take that line out of the nested structure, and it will now execute regardless of whether `b` is `True` or `False`:
+
+```python
+b = False
+if b:
+    print('b is True')
+print('b is False')
+```
+
+On the other hand, if you inset the last line one level further:
+
+```python
+b = False
+if b:
+    print('b is True')
+        print('b is False')
+```
+
+You will get an error saying
+
+```
+IndentationError: unexpected indent
+```
+
+which means that something is wrong with your indenting. In this case, you have indented to a level that does not exist in the code structure. Such errors are extremely common and can be quite annoying, since they may come either from improper indentation, mixing spaces with tabs, or both. On the bright side, this focus on proper indenting enforces a visual clarity in Python scripts that is often missing in other languages.
+
+### Else statements
+
+Coming back to Conditional, if a conditional test does not pass and the first block of code is passed over, it can be caught by an `else` statement:
+
+```python
+b = True
+if b:
+    print('b is True')
+else:
+    print('b is False')
+```
+
+In this case, when `b` is `True` the first statement will execute, and when `b` is `False` the second statement will execute. Try this code both ways to see.

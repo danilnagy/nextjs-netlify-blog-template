@@ -1,0 +1,81 @@
+---
+slug: variables-lists-and-dictionaries-2
+title: Variables, Lists, and Dictionaries (2/3)
+date: 2023-01-31
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+prev: /posts/variables-lists-and-dictionaries-1
+next: /posts/variables-lists-and-dictionaries-3
+roles:
+nextRoles:
+---
+
+## Multi-part variables
+
+In addition to storing single pieces of data, you can also use variables to store many pieces of data, and then access them in a structured way. There are two basic types of multi-part variables:
+
+- **Lists** (sometimes called arrays)
+- **Dictionaries** (sometimes called key-value pairs)
+
+### Working with Lists
+
+A List can be created by using square brackets, and separating individual elements by commas like so:
+
+```python
+numbers = [1, 2, 3, 4, 5]
+fruits = ['apples', 'oranges', 'bananas']
+```
+
+To retrieve an object from such a List, you once again use square brackets, but this time appended to the end of the variable name. Inside the brackets you place the _index_ or position of the item you want in the List. For example:
+
+```python
+numbers = [1, 2, 3, 4, 5]
+print(numbers[0])
+fruits = ['apples', 'oranges', 'bananas']
+print(fruits[1])
+```
+
+Notice that like in all languages (including Grasshopper), counting begins with '0', so if you want the first item in a list you use `[0]`, the second item `[1]`, and so on. Unlike many other languages, Python will allow you to mix different types of data within a single List, so something like this is perfectly legal:
+
+```python
+fruitsAndNumbers = ['apples', 2, 'bananas']
+print(type(fruitsAndNumbers))
+print(type(fruitsAndNumbers[0]))
+print(type(fruitsAndNumbers[1]))
+```
+
+You can also use a `:` operator within the square brackets to obtain a range of values from a List, which will create a new list that you can assign to a new variable:
+
+```python
+numbers = [1, 2, 3, 4, 5]
+newNumbers = numbers[0:3] # [index of first item:index after last item]
+print(newNumbers)
+```
+
+You can even index backwards using negative indices. Here is a typical application that will print out the last item in the List:
+
+```python
+numbers = [1, 2, 3, 4, 5]
+print(numbers[-1])
+```
+
+Lists implement various methods to help you work the data stored within. The most common is `.append()`, which adds a value to the end of a List:
+
+```python
+numbers = [1, 2, 3, 4, 5]
+numbers.append(6)
+print(numbers)
+```
+
+You can even start with an empty List, and fill it gradually with appends:
+
+```python
+numbers = []
+numbers.append(1)
+numbers.append(2)
+print(numbers)
+```
+
+For other common List methods you can refer to the [Python documentation](https://docs.python.org/3/tutorial/datastructures.html#more-on-lists).

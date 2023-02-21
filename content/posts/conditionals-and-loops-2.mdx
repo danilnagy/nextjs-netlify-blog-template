@@ -1,0 +1,102 @@
+---
+slug: conditionals-and-loops-2
+title: Conditionals and Loops (2/3)
+date: 2023-02-07
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+prev: /posts/conditionals-and-loops-1
+next: /posts/conditionals-and-loops-3
+roles:
+nextRoles:
+---
+
+### Comparison operators
+
+In addition to using Booleans, you can also create conditionals using various comparison operators. For example, a conditional can test the size of a number:
+
+```python
+num = 7
+if num > 5:
+    print('num is greater than 5')
+```
+
+Or the contents of a string:
+
+```python
+t = 'this is text'
+if t == 'this is text':
+    print('the text matches')
+```
+
+In this example I use the double equals (`==`) operator to check if one thing equals another. This is the standard way to check equality, since the single equals (`=`) is reserved for assigning values to variables. The most common comparison operators are:
+
+- `==` or `is` - check if two values are equal
+- `!=` or `is not` - check if two values are not equal
+- `>` - check if one number is larger than another
+- `>=` - check if one number is larger or equal to another
+- `<` - check if one number is smaller than another
+- `<=` - check if one number is smaller or equal to another
+
+In all cases, a succeeding condition will compute to a value of `True`, while a failed condition will compute to a value of `False`. You can check this by passing a Conditional statement into the `type()` function and observing that the type is `bool`:
+
+```python
+print(type(5 > 4))
+```
+
+### Elif statements
+
+Between the `if ...:` and `else:` statments, you can also use any number of `elif ...:` (a concatenation of else and if) statement to chain together conditions to create more complex logics:
+
+```python
+num_1 = 3
+num_2 = 7
+
+if num_1 > 5:
+    print('num_1 is greater than 5')
+elif num_2 > 5:
+    print('num_2 is greater than 5')
+else:
+    print("they're both too small!")
+```
+
+This creates a chain of tests that happen in order. If the first test passes, that block of code is executed, and the rest of the Conditional is skipped. If it fails, the second test (written after the `elif` keyword) is analyzed, and so on. If none of the tests pass, the code following the `else:` statement is executed.
+
+### Combining conditions
+
+With Python, you can also combine multiple tests within a single line of code by joining them using a set of special logic operators:
+
+- `and` - returns `True` if <u>both</u> conditions are `True`, `False` otherwise
+- `or` - returns `True` if <u>either</u> conditions are `True` and `False` <u>only</u> if they are both `False`
+- `not` - added in front of any conditional or boolean, this operator reverses the boolean, making a `True` value `False` and vice versa. 
+
+Using these logic operators we can write the following compound conditionals:
+
+```python
+num_1 = 3
+num_2 = 7
+
+if num_1 < 5 and num_2 < 5:
+    print("they're both too small!")
+
+if num_1 < 5 or num_2 < 5:
+    print("at least one of them is too small!")
+
+if not num_2 < 5:
+    print("num_1 is at least 5")
+```
+
+### The 'in' operator
+
+Finally, we can create a conditional to check if an item or value is stored within a list using the spacial `in` operator. We can also combine it with `not` to check if something is currently <u>not</u> stored inside a list. For example:
+
+```python
+myList = [1, 2, 3, 4, 5]
+if 5 in myList:
+    print("5 is in the list")
+
+myDictionary = {'a': 1, 'b': 2, 'c': 3}
+if 'd' not in myDictionary.keys():
+    print("there is no item with a key of 'd'")
+```
