@@ -1,0 +1,54 @@
+---
+slug: "exercise-working-with-rhino-api-3"
+title: "Exercise: Working with the Rhino API (3/3)"
+date: 2023-02-03
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+prev: /posts/exercise-working-with-rhino-api-2
+next: 
+roles:
+nextRoles:
+---
+
+One major difficulty when starting to work with libraries such as _rhinoscriptsyntax_ or _Rhino.Geometry_ is knowing the exact syntax of each geometric method available, what to pass in for inputs, and what returns to expect from each one. In Grasshopper you can easily see what components are available to you by looking through the options in the toolbar. You can also see each component's expected inputs and outputs by looking at the ports of the component. This is more difficult with code, since there is no graphic interface for any of the methods. So how do we know what methods are available and how to use them?
+
+The best way is to search through the documentation of each library, which contains a full description of each class implemented by the library and its methods. You can find the documentation for _rhinoscriptsyntax_ and _Rhino.Geometry_ here:
+
+- http://developer.rhino3d.com/api/RhinoScriptSyntax — documentation for the _rhinoscriptsyntax_ Library with a description of each method and data type supported
+- https://github.com/mcneel/rhinoscriptsyntax — source code of the _rhinoscriptsyntax_ Library which shows how each method is implemented using RhinoCommon
+- http://4.rhino3d.com/5/rhinocommon/ — documentation of the full _RhinoCommon_ Library including all data types and methods with Python examples for each one.
+
+In practice, searching through full documentation sets can be difficult and confusing for someone just getting started, so the Python script editor provides two tools that make it easier to find out what methods are available in a Library and how to use them.
+
+The first is the autocomplete feature, which gives you hints on what methods are available in the Library as you type the code. You may have already noticed it as you were writing the lines above. Lets type the line
+
+```python
+a = rh.Circle(x, 2)
+```
+
+again character by character to see how this works. Remember that `rh` is a keyword representing the _Rhino.Geometry_ Library, and the `.` symbol is Python's way of accessing a Class from a Library or a method or property from a Class. Once you type in the `.` symbol, a window will pop up with a list of all the Classes in that Library. This would also work if you had an instance of a Class and were trying to access it's methods and properties. As you continue typing, the pop-up list will automatically scroll down to the portion you are typing and highlight the best matching Class name. Once you see the Class you want highlighted you can press 'Enter' or double-click on the name to enter the Class name into the script.
+
+![browsing classes within a library](/images/1-04.png#img-full)
+
+_Browsing Classes within a Library_
+
+Following the Class or method name you typically place a set of parenthesis where you pass in the method or Class constructor’s inputs. Once you type the first `(` the Python window will automatically load the documentation of that method into the results windows which tells you what inputs the method expects and what outputs it generates.
+
+![reading documentation for a method](/images/1-05.png#img-full)
+
+_Reading documentation for a method_
+
+In the case of the `.Circle()` Class constructor method you can see that it actually supports many different combinations of inputs. In Python this is called 'overloading' a method, and allows a single method to do different things based on different combinations of inputs.
+
+In this case it allows us to create Circles in several different ways such as based on a center and radius or based on 3 Points. Overloading is another advantage of using the _Rhino.Geometry_ library over the _ghpythonlib.components_ Library. Instead of remembering the 7 different components for creating Circles in Grasshopper, we have a single `.Circle()` Class which can make circles in different ways based on the inputs we give its constructor.
+
+> # CHALLENGE
+> Can you add a slider to our definition to control the radius of the Circle?
+>
+> ![description](/images/1-06.gif)
+>
+> Hint: create a new input in the `Python` component using the [Zoomable UI]() and connect to it a new `Number Slider`. Then use the variable name of the input inside the Python code to replace the hard-coded value of '2'.
+>
+> Once you’ve made the changes, capture a screenshot of your Rhino and Grasshopper window so that the additional component(s) and code changes are visible. Name the file with your UNI and/or name, and upload to: https://www.dropbox.com/request/Eq8a75WUvGPwAQLbTJgu

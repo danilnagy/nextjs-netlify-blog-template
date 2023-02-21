@@ -1,0 +1,55 @@
+---
+slug: "exercise-working-with-rhino-api-1"
+title: "Exercise: Working with the Rhino API (1/3)"
+date: 2023-02-03
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+prev: /posts/exercise-working-with-rhino-api
+next: /posts/exercise-working-with-rhino-api-2
+roles:
+nextRoles:
+---
+
+## Working with the Rhino and Grasshopper Libraries
+
+To enable us to work with geometry in Python, Rhino and Grasshopper provide several pre-installed Libraries which we will cover in this section.
+
+The three main Libraries provided by Rhino/Grasshopper which allow Python to access geometric data types and operations are:
+
+- **ghpythonlib.components** — allows you to directly reference Grasshopper components in Python code
+- **Rhino.Geometry** — allows you to access all commands and data types in the main [RhinoCommon](http://developer.rhino3d.com/guides/rhinocommon/what-is-rhinocommon/) library
+- **rhinoscriptsyntax** — a wrapper over the Rhino.Geometry library which provides similar commands and functionality to Rhinoscript
+
+Let's see how each one of these work through an example. We will create a simple Python script that takes a Point as an input and creates a Circle with that Point as the center and a radius of '2'. The Grasshopper definition consists of a `Python` component with one input and one output, a `Point` component connected to the input, and a `Panel` component connected to the output so we can see the results.
+
+![grasshopper setup](/images/1-01.png#img-full)
+
+_Initial setup of basic example in Grasshopper_
+
+### Inputting geometry
+
+Double-click on the `Python` component to open up the Python script editor. First, let's see how the input point is represented in Python. We can see this by printing the input's value and using Python's type() function to print its type. Type these lines in the script and click the 'Test' button to see the results:
+
+```python
+print x
+print type(x)
+```
+
+You should see something like this:
+
+```
+ac7825d2-24b0-4225-b52a-f04a3daa0849
+<type 'Guid'>
+```
+
+Wait a second, didn't we input a Point — why are we getting this 'Guid'?
+
+By default any geometry input into a `Python` component is not brought in as the geometry itself, but as a reference to the geometry in the Grasshopper environment. This reference is stored in the geometry's unique ID number, a text string called a 'Guid'. This can create problems for most geometric functions, which expect actual geometry data instead of a 'Guid' reference.
+
+We can fix this by telling Python exactly what kind of data we are inputting using 'Type hints'. To set the input's type, right click on the 'x' input of the Python node, go to 'Type hint', and select Point3d. The 'Type hint' menu shows all the geometry types supported by Grasshopper. When we specify that the input is of the type 'Point3d', Python will automatically convert the 'Guid' reference to the actual point geometry so that we can use it with geometric functions in our script.
+
+![setting the type hint](/images/1-02.png#img-full)
+
+_Setting the 'Type hint' for a Python input_

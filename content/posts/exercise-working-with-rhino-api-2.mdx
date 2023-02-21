@@ -1,0 +1,75 @@
+---
+slug: "exercise-working-with-rhino-api-2"
+title: "Exercise: Working with the Rhino API (2/3)"
+date: 2023-02-03
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+prev: /posts/exercise-working-with-rhino-api-1
+next: /posts/exercise-working-with-rhino-api-3
+roles:
+nextRoles:
+---
+
+### The _ghpythonlib.components_ library
+
+Now that we have correctly specified the type of the geometry we are inputting, we can start to build our simple script. We will start by importing the _ghpythonlib.components_ library. Delete the previous two lines and type on the first line:
+
+```python
+import ghpythonlib.components as ghcomp
+```
+
+This will import the components portion of the main _ghpythonlib_ library into our script so we can use it’s methods to work with geometry. We use the `import ... as ...` syntax to give the library a shorter keyword that will save us typing and make the script cleaner. Now when we want to use the library we can reference it with `ghcomp` rather than typing the full `ghpythonlib.components` each time.
+
+The _ghpythonlib.components_ library contains methods that replicate the behavior of each component in Grasshopper. Each method expects the same number and type of inputs as its Grasshopper component equivalent, and returns the same outputs. If the component has more than one output the return will be a list whose length is the number of outputs.
+
+Let’s use the library's `Circle` method to create a Circle based on a center Point and radius, just like the `Circle` component in Grasshopper. On the next line type:
+
+```python
+a = ghcomp.Circle(x, 2)
+```
+
+As expected this creates a circle with a radius of 2, centered on the input point.
+
+![generating a circle](/images/1-03.png#img-full)
+
+_Creating a circle with Python_
+
+### The _Rhino.Geometry_ library
+
+Now let’s do the same thing with the Rhino.Geometry library. Below the first import line, type:
+
+```python
+import Rhino.Geometry as rh
+```
+
+This line imports the _Geometry_ portion of the main _Rhino_ library and assigns it the keyword `rh`. Now we can change the line of code that creates the circle to:
+
+```python
+a = rh.Circle(x, 2)
+```
+
+If you run the script you will see that the result is exactly the same — a circle centered on our input point with a radius of 2.
+
+### The _rhinoscriptsyntax_ library
+
+Finally, let’s look at the same example using the _rhinoscriptsyntax_ library. We can import the library by typing:
+
+```python
+import rhinoscriptsyntax as rs
+```
+
+and use the library’s `.AddCircle()` method to create a new circle based on the input point and radius.
+
+```python
+a = rs.AddCircle(x, 2)
+```
+
+We have now seen three different libraries that allow you to work with geometry in Python, so which one should you use? Ultimately all three do basically the same thing and create the same exact geometry, but they each come with certain benefits and limitations:
+
+- The **ghpythonlib.components** library makes it easier to get started because you can directly use the same components you are used to using in Grasshopper. However you are restricted to what is available in Grasshopper, and some of the methods can be clunky compared to those in RhinoCommon.
+
+- The **rhinoscriptsyntax** library was created to make it easier for those already used to using RhinoScript to transition to using Python. The methods in the _rhinoscriptsyntax_ library replicate those in RhinoScript, but do so by ‘wrapping up’ methods from RhinoCommon. Thus they may make some geometric operations easier and cleaner, but also limit the scope of possibilities compared to using the full RhinoCommon.
+
+- The **Rhino.Geometry** library is the most comprehensive and robust way to work with geometry in Python because it exposes all of the methods in the full [RhinoCommon](http://developer.rhino3d.com/guides/rhinocommon/what-is-rhinocommon/) library. RhinoCommon is a universal cross-platform library developed by McNeel for the release of Rhino 5 which allows all versions of Rhino and Grasshopper to access the same geometric data types and methods. By tapping into this library we gain access to everything Rhino is capable of, which allows us to do things we could not do with either Grasshopper or RhinoScript.

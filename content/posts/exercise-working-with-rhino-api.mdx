@@ -1,0 +1,18 @@
+---
+slug: "exercise-working-with-rhino-api"
+title: "Exercise: Working with the Rhino API"
+date: 2023-02-03
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+next: /posts/exercise-working-with-rhino-api-1
+roles:
+nextRoles:
+---
+
+This module demonstrates how we can access a number of Rhino Libraries while working in Python from withing Grasshopper, and use it to work with Rhino's native geometry types.
+
+## Introduction
+
+By design, the core Python language is fairly limited in functionality, being restricted to basic algebra, flow control structures, and data manipulation functions. This is done intentionally to keep the core Python language as light-weight and fast as possible. To extend Python's functionality to more advanced uses, we rely on a series of external Libraries which define classes and methods useful for specific tasks. To use these Libraries we must first make sure they are installed into our version of Python, and then we need to import them into our script. Some very common Libraries such as [random](https://docs.python.org/3/library/random.html) or [math](https://docs.python.org/3/library/math.html) come pre-installed with Python but still must be imported into every script we want to use it in. Other Libraries such as [numpy](https://numpy.org/) must be installed separately before they can be imported into our scripts.
