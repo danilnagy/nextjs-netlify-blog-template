@@ -1,0 +1,18 @@
+---
+slug: recursive-algorithms
+title: Recursive Algorithms
+date: 2023-02-21
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+next: /posts/recursive-algorithms-1
+roles:
+nextRoles:
+---
+
+## Introduction
+
+In computer science, 'recursion' refers to a strategy where the solution to a problem can be solved using solutions to smaller versions of the same problem. In computer programming, such systems are defined using ‘recursive functions’ which are basically functions that can call themselves. These kinds of functions are impossible to define in Grasshopper because there is no way to feed data from a function back into itself. Using Python, however, we can easily create such functions by having the function define its output based on the outputs of modified versions of itself.
+
+These recursive calls to the same function create a kind of spiral behavior defined by subsequent executions of different versions of the same function. By default this recursive behavior will create an infinite spiral, similar to the infinite ‘while’ loop we saw in a previous section. If you don’t provide any way for the recursion to stop, the function will keep calling itself for eternity, which will simply cause your script to crash. We can prevent this by defining a conditional inside the function that specifies a ‘termination criteria’ which stops the function from calling itself. Once the final function call has terminated, its return is fed all the way back through all the function calls until the final solution is returned.

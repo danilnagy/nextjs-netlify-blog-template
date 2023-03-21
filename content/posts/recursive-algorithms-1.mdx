@@ -1,0 +1,71 @@
+---
+slug: recursive-algorithms-1
+title: Recursive Algorithms 1/1
+date: 2023-02-21
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+prev: /posts/recursive-algorithms
+roles:
+nextRoles:
+---
+
+## Introduction
+
+The concept of recursion is incredibly powerful, and there are many useful application for recursion in computer programming. At the same time, the nested behavior of recursive functions can be difficult for people to understand intuitively, which is why recursion tends to be a difficult subject for people just starting out in programming. To start to gain an intuition for how recursive functions work, let’s create a simple example of a recursive function that can add a sequence of numbers up to a certain value. We won’t be using any geometry yet, but you can try this code directly in a Python node in Grasshopper.
+
+```python
+def addRecursively(value):
+    if value == 0:
+        return value
+    return value + addRecursively(value-1)
+print addRecursively(3)
+# prints 6
+```
+
+If you run this script you should see 6 as the result in the output window, which is indeed the result of summing 1 + 2 + 3. You can see that `addRecursively()` is a recursive function because it calls itself within its definition. To see how this function works, let’s step through all of the function calls that lead to the final solution.
+
+The first time we call the function we pass in the number three, which is brought into the function in the variable ‘value’. The function first checks if this value is equal to 0, and if it is it simply returns the value. This causes the function to return 0 if its input is 0, which is a valid solution to our summation problem. This conditional is the ‘termination criteria’ of our function. In order for our function to not enter an endless spiral and crash, we have to ensure that this criteria is met at some point. In our case we must ensure that the value input into the function eventually becomes 0.
+
+In our case the value is ‘3’ so the conditional is skipped, and the function instead returns the input value added to the results of the same function with an input of one minus the value. This causes the function to execute again, this time with an input of ‘2’. The original function will now wait until it gets the return from this new function, at which point it will return the value of the new function plus 3.
+
+To get a better understanding of how this works, let’s visualize the sequence of calls and returns:
+
+```python
+addRecursively(3) --> 3 + _
+	addRecursively(2) --> 2 + _
+		addRecursively(1) --> 1 + _
+			addRecursively(0) --> 0
+			1 + 0 --> 1
+		2 + 1 --> 3
+	3 + 3 --> 6
+```
+
+You can see how this forms a nested set of calls to the same function, with each function waiting for it’s child function to return its value before generating it’s own return.
+
+What if we want to add an arbitrary list of numbers instead of a sequence of numbers? To do this we can create a variation of our `addRecursively()` function which takes in a list of numbers and operates on them one by one:
+
+```python
+def addRecursively(values):
+    if len(values) <= 0:
+        return 0
+    value = values.pop(0)
+    return value + addRecursively(values)
+print addRecursively([1,3,5])
+# prints 9
+```
+
+In this case the input into the `addRecursively()` function is a list of values. The termination criteria is when there are no more items in the list, at which point the function returns 0. If there are still items remaining, the function uses the list’s `.pop(i)` method which removes the i-th element from the list and stores it in the ‘value’ variable. Then the function returns this value added to the return of the same function called with the new version of the list which has the first value removed. We can visualize this behavior in the same way as before:
+
+```python
+addRecursively([1,3,5]) --> 1 + _
+	addRecursively([3,5]) --> 3 + 
+		addRecursively([5]) --> 5 + _
+			addRecursively([]) --> 0
+			5 + 0 --> 5
+		3 + 5 --> 8
+	1 + 8 --> 9
+```
+
+We can use this list-based method of recursion to parameterize the behavior of any recursive function with a list of parameters. In the addition case, the numbers in the list can be thought of as parameters that control the behavior of the addition over time. In the same way, we can imagine a set of parameters which control the behavior of any recursive function that is executed the same number of times as there are parameters.
