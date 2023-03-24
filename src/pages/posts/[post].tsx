@@ -14,6 +14,8 @@ import YouTube from "react-youtube";
 import { TwitterTweetEmbed } from "react-twitter-embed";
 import rehypeHighlight from "rehype-highlight"
 
+import { PluggableList } from "unified";
+
 export type Props = {
   title: string;
   dateString: string;
@@ -85,7 +87,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { content, data } = matter(source, {
     engines: { yaml: (s) => yaml.load(s, { schema: yaml.JSON_SCHEMA }) as object }
   });
-  const mdxSource = await renderToString(content, { components, scope: data, mdxOptions: { rehypePlugins: [rehypeHighlight] } });
+  const mdxSource = await renderToString(content, { components, scope: data, mdxOptions: { rehypePlugins: [rehypeHighlight] as PluggableList } });
   return {
     props: {
       title: data.title,
