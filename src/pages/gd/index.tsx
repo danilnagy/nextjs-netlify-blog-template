@@ -11,6 +11,7 @@ import { listTags, TagContent } from "../../lib/tags";
 import config from "../../lib/config";
 import { useContext } from "react";
 import { AuthContext } from "../../contexts/authContext";
+import Script from "next/script";
 
 type Props = {
   posts: PostContent[];
@@ -22,12 +23,33 @@ type Props = {
   mode: string;
 };
 
+
+
 export default function Index({ posts, tags, pagination, mode }: Props) {
 
   const { user, login, signup, logout } = useContext(AuthContext);
 
   return (
     <Layout>
+      <Script strategy="afterInteractive" src="https://assets.swarmcdn.com/cross/swarmdetect.js"/>
+      <Script
+        id='google-analytics'
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+            var swarmoptions = {
+                swarmcdnkey: "68f9693f-4651-4ab6-9a03-2760ae3024f3",
+                iframeReplacement: "iframe",
+                autoreplace: {
+                    youtube: true
+                },
+                theme: {
+                    button: "circle",
+                    primaryColor: "#328ac6"
+                }
+            };`,
+          }}
+      />
       <BasicMeta url={"/"} title={"Generative Design"} />
       <OpenGraphMeta url={"/"} />
       <TwitterCardMeta url={"/"} />
