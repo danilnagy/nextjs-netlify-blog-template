@@ -18,7 +18,7 @@ export default function PostItem({ post, index }: Props) {
             a {
               color: #222;
               display: inline-block;
-              padding: 0.5rem 0.5rem;
+              padding: 0.25rem 0;
               margin-left: -0.5rem;
               cursor: pointer;
             }
@@ -39,7 +39,7 @@ export default function PostItem({ post, index }: Props) {
               margin: 0;
               font-size: 1.25rem;
               font-weight: 400;
-              // line-height: 1.25;
+              padding: 0.5rem;
             }
             @media (min-width: 768px) {
               h2 {

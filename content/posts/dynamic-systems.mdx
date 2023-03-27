@@ -1,0 +1,28 @@
+---
+slug: dynamic-systems
+title: Dynamic Systems
+date: 2023-03-07
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+next:
+roles:
+nextRoles:
+---
+
+This article describes how we can use dynamic systems and agent-based models to further abstract the relationship between a set of input parameters and a set of solutions in a design space. To create such a system we define a collection of agents who follow a set of rules or behaviors over a series of time steps. These behaviors dictate how the agents interact with other agents and their environment, and how these interactions affect the internal state of the agents.
+
+In computer science, such systems are often called agent-based models and we can easily implement them using Object-oriented programming (OOP). To do so we create a class which defines the structure of the agent, with local variables that define its states and a set of methods which define its behaviors. Then we create a set of instances of this Class and let the instances play out their behaviors over a series of time steps. Because such a system has to play out over multiple time steps, it is called a dynamic system, as opposed to static systems which can be computed directly in one step.
+
+Agent-based systems are often used to model complex behaviors in nature, which are also typically defined by the interaction of a large number of agents who are driven by a relatively simple set of rules. Examples of such systems include the flocking of birds, the organization of ants, the growth of slime mold, and the construction of termite mounds. These types of systems are often called emergent because of their ability to develop highly complex behaviors and structures from a set of relatively simple behaviors.
+
+![description](/images/15-1.gif)
+
+_Flocking is a typical complex behavior which can be simulated through agent-based programming_
+
+<p>
+  <div className="video-box">
+    <smartvideo src="https://www.dropbox.com/s/3g0y9ba0ic22dsl/16-1.mp4?dl=1" width="1280" height="720" className="swarm-fluid" poster="https://www.dropbox.com/s/cite0ybyyb2rth1/16-1.png?dl=1" controls></smartvideo>
+  </div>
+</p>

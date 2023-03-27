@@ -87,14 +87,14 @@ export default function PostLayout({
         <article>
           <header>
             <h1>{title}</h1>
-            <div className={"metadata"}>
+            {/* <div className={"metadata"}>
               <div>
                 <Date date={date} />
               </div>
               <div>
                 <Author author={getAuthor(author)} />
               </div>
-            </div>
+            </div> */}
           </header>
           { mode !== "test" && <UserAuth />}
           { (user && (roles.includes(user.app_metadata.roles[0])) || roles.length == 0 ?

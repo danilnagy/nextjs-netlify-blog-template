@@ -1,0 +1,28 @@
+---
+slug: exercise-circle-packing-1
+title: "Exercise: Circle Packing"
+date: 2023-03-10
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+prev: 
+next: /posts/exercise-circle-packing-2
+roles:
+nextRoles:
+---
+
+This session will introduce you to the concept of agent-based behavior and how it can be used to create a packing model in Python.
+
+With agent-based behavior, we can model complex systems based on the interactions of many agents following a set of simple rules. In a way, this is similar to recursion as it allows us to break our problem into smaller parts, and explore different solutions to the problem by varying the way those parts get executed.
+
+In the demo, we will start to build the packing-based layout model by implementing a custom Python Class to represent each space in the layout. These spaces will be the agents in our system, and we will program different behaviors for them using their methods. The two main behavior we will implement are:
+
+- collide - this will cause the agents to move away from each other if they overlap
+- attract - this will cause agents to move toward each other based on a desired adjacency.
+
+<p>
+  <div className="video-box">
+    <smartvideo src="https://www.dropbox.com/s/jaqenj90p579hca/dense_packing-02.mp4?dl=1" width="1280" height="720" className="swarm-fluid" poster="https://www.dropbox.com/s/aqy725py9xfgo9k/16-2.png?dl=1" controls></smartvideo>
+  </div>
+</p>
