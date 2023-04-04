@@ -1,0 +1,25 @@
+---
+slug: exercise-dividing-spaces
+title: "Exercise: Dividing Spaces"
+date: 2023-03-20
+author: daniln
+tags:
+  - grasshopper
+  - beginner
+prev: 
+next: /posts/exercise-dividing-spaces-1
+roles:
+nextRoles:
+---
+
+In this session, we apply the recursive logic from the previous lesson to create a basic subdivision process that takes a starting closed boundary curve and progressively divides it into pieces to generate a set of smaller spaces. This creates the starting point for our floor plan generator which will be further developed over the next two weeks of the course.
+
+The core of the subdivision logic is a process that starts with a single space represented by a closed curve and divides it into two spaces based on parameters that dictate the direction and location of the split. In the demo, we first model this process in Grasshopper using only Grasshopper components. We then convert the process step by step to Python code developed withing a single Python component. 
+
+In the following tutorial, we will wrap this process into a custom function, which will allow us to apply it recursively to split a space continuously into a set of smaller spaces based on a set of parameters.
+
+<p>
+  <div className="video-box">
+    <smartvideo src="https://www.dropbox.com/s/8sazcorxnbgk57x/week-6-1.mp4?dl=1" width="1280" height="720" className="swarm-fluid" poster="https://previews.dropbox.com/p/thumb/AB1y_XearyiH2gLsptIXzVeYmh9qyRCLAyT-HJmACWEj_9qdCB57kuzjty13Ig2ZKKNoOEUNaxSVZnu4qDgE5ZlKbPSkdZeo09huSqm-i-qy5Nl23syN0ccWiV1Fbem0YWbZ4t4Qm2K-YCE0VLid91aAtuCMHoCDTVtck1YlCJtPWfD8ll2GXsGegILvPTICotreyyYB_iv-EZkax6FNL__mUs2-j-FmBFNByVbfHQ2WK3pvtCAml-f6uJTQAu1-rwLYrTF65PFhGSA7VUnWKZHgKFKTDfkABzUZTAqhjrwdM6panX42By5X_vBGU2lb5FU/p.jpeg?size=1280x960&size_mode=2&psid=2b103728-e22f-4d7c-bbcc-9aa17f935c73" controls></smartvideo>
+  </div>
+</p>

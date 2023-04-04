@@ -22,3 +22,31 @@ nextRoles:
 
 - [05-01-05-end.gh](https://www.dropbox.com/s/zf7apey3xomytce/05-01-05-end.gh?dl=1)
 
+## CHALLENGE
+
+In the demo we created the basic framework for a new Class called “Room”, which creates an object with a given center point and radius, and a basic “collision” method for checking its distance to another object and moving them away from each other if they are too close. In this tech challenge, you will implement a complementary method called “cluster” which will move the object closer to a specified “neighbor” object.
+
+Download and open the starting Grasshopper file. This model has been extended with several new features:
+
+- Line 10: When an object is initialized, an empty list called “neighbors” is created to store the object’s neighbors.
+- Line 13: An `addNeighbor()` method has been implemented in the Room class which adds a given object to the instance’s list of neighbors.
+- Line 35: An empty method called `cluster()` has been created. The method contains a single line with the pass keyword which will do nothing but is necessary so that the code does not throw an error due to an empty method. This is where you will implement the object’s cluster behavior for this week’s challenge.
+- Line 48: A loop has been added which iterates over each room object and uses its `addNeighbor()` method to add the previous room in the list to it’s list of neighbors.
+- Line 58: Within the optimization loop which runs the collision behavior for each pair of rooms, another loop has been added to run the “cluster” behavior for each room and its neighbors.
+
+For this week’s challenge, replace the pass keyword in the `cluster()` method of the Room class with code to enable the clustering behavior between two objects. After you’ve properly completed the method, you should see the objects cluster together in the canvas. This is driven by the objects trying to move closer to their neighbors, while still avoiding overlaps due to the `collision()` method:
+
+![packing](/images/packing-1.png)
+
+*Left: final position of objects with only “collision” implemented*
+*Right: final position of objects with “collision” and “cluster” implemented*
+
+Once you’ve completed the challenge, capture a screenshot of your Rhino/Grasshopper/Python windows so that the additional code is visible. Name the file with your UNI and/or name, and upload to: [https://www.dropbox.com/request/RA0348FuRpDoiFhl0Q44](https://www.dropbox.com/request/RA0348FuRpDoiFhl0Q44).
+
+> # Hint 
+> 
+> The cluster() method should be very similar to the collision() method, with a few minor differences:
+> 
+> - After measuring the distance between center points, the movement behavior should be triggered if the distance is greater than the sum of radiuses.
+> - The vector for moving the objects should be based on the gap between them (the distance minus the sum of radii) instead of the overlap (sum of radii minus the distance)
+> - Based on how you calculate the initial vector, make sure that you are moving the right object in the right direction so that the objects end up moving toward each other.
