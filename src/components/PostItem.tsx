@@ -12,7 +12,7 @@ export default function PostItem({ post, index }: Props) {
     <Link href={"/posts/" + post.slug}>
       <a>
         {/* <Date date={parseISO(post.date)} /> */}
-        <h2><span v-if="index">{`${ index + 1 }. `}</span>{`${post.title}`}</h2>
+        <h2>{`${index != undefined ? index + 1 : ''}. ${post.title}`}</h2>
         <style jsx>
           {`
             a {
