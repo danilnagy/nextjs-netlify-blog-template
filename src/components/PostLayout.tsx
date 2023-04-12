@@ -164,7 +164,7 @@ export default function PostLayout({
             }
             article {
               flex: 1 0 auto;
-              padding: 2rem;
+              padding: 3rem;
               background-color: white;
               box-shadow: 0px 0px 75px 0px rgb(0 0 0 / 5%);
             }
